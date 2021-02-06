@@ -5,6 +5,7 @@ public class sqrt {
         return g;
     }
     private static double guessHelp(double n, double guess) {
+        if (n == 0) return 0;
         if (Math.abs(guess*guess - n) <= n*0.00001) {
             return guess;
         } else {
