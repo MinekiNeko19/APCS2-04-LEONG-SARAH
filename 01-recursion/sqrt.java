@@ -11,8 +11,4 @@ public class sqrt {
             return guessHelp(n, (n/guess+guess)/2);
         }
     }
-
-    // public static void main(String[] args) {
-    //     System.out.println(sqrtNewton(100));
-    // }
 }
