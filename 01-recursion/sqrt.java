@@ -1,5 +1,8 @@
+import java.lang.ArithmeticException;
+
 public class sqrt {
     public static double sqrtNewton(double n) { //wrapper
+        if (n<0) throw new ArithmeticException();
         double g = 1;
         g = guessHelp(n, g);
         return g;
