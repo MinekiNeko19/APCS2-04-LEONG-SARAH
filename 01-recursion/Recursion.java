@@ -8,12 +8,19 @@ public class Recursion {
     }
 
     public static long countNoDoubleLetterWords(int length, String word) {
+        int count = 0; // keeps track of words in each case
         if (length==0) return 0; // special case
         if (word.length()==length) { // base case
-            return 1;
+            count++;
         } else {
-
+            for (int i = 97; i < 123; i++) { // (char)97 is 'a'
+                if (word.length()==0 || (int)word.charAt(word.length()-1) != i) {
+                    // telescope add the counts
+                    count += countNoDoubleLetterWords(length, word+(char)i);
+                } // no else statement to cut off the branches with repeats
+            }
         }
+        return count;
     }
 
     public static double sqrt(double n) { //wrapper
