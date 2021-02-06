@@ -1,6 +1,10 @@
 public class Recursion {
     public static String reverse(String s) {
-        return "";
+        if (s.length()==1) { // base case
+            return s;
+        } else {
+            return reverse(s.substring(1)) + s.charAt(0);
+        }
     }
 
     public static long countNoDoubleLetterWords(int length, String word) {
