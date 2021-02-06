@@ -8,7 +8,12 @@ public class Recursion {
     }
 
     public static long countNoDoubleLetterWords(int length, String word) {
-        return 0;
+        if (length==0) return 0; // special case
+        if (word.length()==length) { // base case
+            return 1;
+        } else {
+
+        }
     }
 
     public static double sqrt(double n) { //wrapper
