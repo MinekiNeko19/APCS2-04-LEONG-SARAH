@@ -26,7 +26,7 @@ public class QueenBoard {
                 if (r-i==j-c) {board[i][j]-=1;} // +slope diagonal
             }
         }
-        board[r][c] = 0; // no danger b/c it was a spot that was safe before
+        board[r][c] = 1; // danger b/c it was a spot that was safe before but we checked and it is now
     }
 
     public QueenBoard(int size){
@@ -48,20 +48,31 @@ public class QueenBoard {
         return ans;
     }
 
-    public boolean solve(){
-        // if (board[0][0] != 0) throw new IllegalStateException(); // board must be completely cleared tho :// modify
-        // int numQueens = 0;
+    private int columnSafe(int c) { // returns index of a safe spot (top down)
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][c]==0) return i;
+        }
+        return -1; // no safe 0s
+    }
 
+    private boolean solveHelp(int numQueens, int r, int c) {
         // // base case
-        // if () {
-
+        // if (numQueens==board.length) {
+        //     return true;
         // }
 
-        // // recursion: place or not place
-        // if (solve()) {
-
+        // // recursion
+        // if (columnSafe(c)==-1) {
+        //     solveHelp(numQueens+1, r+1, columnSafe(c));
         // }
-        return true;
+        // if (solveHelp(numQueens+1, r, columnSafe(c))) {
+            
+        // } else {}
+        return false;
+    }
+
+    public boolean solve(){ //IllegalStateException
+        return false;
     }
 
     public int countSolutions() {
