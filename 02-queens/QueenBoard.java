@@ -1,7 +1,9 @@
 public class QueenBoard {
     private int[][] board;
 
-    private boolean addQueen(int r, int c) {
+    public boolean addQueen(int r, int c) {
+        // temporary
+        board[r][c] = -1;
         return true;
     }
     private void removeQueen(int r, int c) {
@@ -13,7 +15,16 @@ public class QueenBoard {
     }
 
     public String toString() {
-        return "";
+        String ans = "";
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j]==-1) {ans += "Q";}
+                else {ans += "_";}
+                if (j==board.length-1) {ans += "\n";}
+                else {ans += " ";}
+            }
+        }
+        return ans;
     }
 
     public boolean solve(){
