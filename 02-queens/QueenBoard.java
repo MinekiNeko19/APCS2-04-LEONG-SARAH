@@ -3,21 +3,27 @@ import java.lang.IllegalStateException;
 public class QueenBoard {
     private int[][] board;
 
-    private boolean addQueen(int r, int c) {
+    public boolean addQueen(int r, int c) {
         if (board[r][c] != 0) return false; // if the spot is dangerous don't add
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
-                if (i == r || j == c) {board[i][j]+=1;} // marks which boxes are dangerous
+                // marks which boxes are dangerous
+                if (i == r || j == c) {board[i][j]+=1;}  // horizontal and virtical
+                if (i-r==j-c) {board[i][j]+=1;} // -slope diagonal
+                if (r-i==j-c) {board[i][j]+=1;} // +slope diagonal
             }
         }
         board[r][c] = -1;
         return true;
     }
-    private void removeQueen(int r, int c) {
+    public void removeQueen(int r, int c) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
-                if (i == r || j == c) {board[i][j]-=1;} // marks which boxes are dangerous
+                // marks which boxes are dangerous
+                if (i == r || j == c) {board[i][j]-=1;}  // horizontal and virtical
+                if (i-r==j-c) {board[i][j]-=1;} // -slope diagonal
+                if (r-i==j-c) {board[i][j]-=1;} // +slope diagonal
             }
         }
         board[r][c] = 0; // no danger b/c it was a spot that was safe before
@@ -43,6 +49,18 @@ public class QueenBoard {
     }
 
     public boolean solve(){
+        // if (board[0][0] != 0) throw new IllegalStateException(); // board must be completely cleared tho :// modify
+        // int numQueens = 0;
+
+        // // base case
+        // if () {
+
+        // }
+
+        // // recursion: place or not place
+        // if (solve()) {
+
+        // }
         return true;
     }
 
