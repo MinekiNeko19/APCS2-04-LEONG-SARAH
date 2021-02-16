@@ -52,8 +52,10 @@ public class QueenBoard {
     }
 
     private int columnSafe(int c) { // returns index of a safe row in the column (top down)
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][c]==0) return i;
+        if (c < board.length) {
+            for (int i = 0; i < board.length; i++) {
+                if (board[i][c]==0) return i;
+            }
         }
         return -1; // no safe 0s
     }
@@ -66,10 +68,14 @@ public class QueenBoard {
     }
 
     private boolean solveHelp(int numQueens, int r, int c) {
+        // Special cases: issue with board size 1,5
         // base case
-        if (columnSafe(c)==-1 || c==board.length) { // stops if no queen in column or end of board
+        System.out.println(c);
+        if (c>=board.length || columnSafe(c)==-1) { // stops if no queen in column or end of board
             return numQueens==c; // same num of queens as board size
         }
+
+        System.out.println("im running");
 
         if (addQueen(r, c)) {
             return solveHelp(numQueens+1, columnSafe(c+1), c+1);
