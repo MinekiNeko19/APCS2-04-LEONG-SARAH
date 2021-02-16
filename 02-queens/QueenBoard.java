@@ -52,7 +52,7 @@ public class QueenBoard {
     }
 
     private int columnSafe(int c) { // returns index of a safe row in the column (top down)
-        if (c < board.length) {
+        if (c < board.length && c >= 0) {
             for (int i = 0; i < board.length; i++) {
                 if (board[i][c]==0) return i;
             }
@@ -69,10 +69,17 @@ public class QueenBoard {
 
     private boolean solveHelp(int numQueens, int r, int c) {
         // base case
-        if (c>=board.length || columnSafe(c)==-1) { // stops if no queen in column or end of board
+        if (c>=board.length) { // stops if no queen at end of board
             return numQueens==board.length; // same num of queens as board size
         }
 
+        if (columnSafe(c)==-1) {
+            if (c==0) return false; // not solvable then
+            removeQueen(queenRow(c-1), c-1); // removes last row's queen since it didn't work
+            return solveHelp(numQueens-1, columnSafe(c-1), c-1);
+        }
+
+        // recursion
         if (addQueen(r, c)) {
             return solveHelp(numQueens+1, columnSafe(c+1), c+1);
         }
