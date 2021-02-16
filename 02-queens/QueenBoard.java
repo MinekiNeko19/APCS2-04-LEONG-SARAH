@@ -68,10 +68,9 @@ public class QueenBoard {
     }
 
     private boolean solveHelp(int numQueens, int r, int c) {
-        // Special cases: issue with board size 1
         // base case
         if (c>=board.length || columnSafe(c)==-1) { // stops if no queen in column or end of board
-            return numQueens==c; // same num of queens as board size
+            return numQueens==board.length; // same num of queens as board size
         }
 
         if (addQueen(r, c)) {
