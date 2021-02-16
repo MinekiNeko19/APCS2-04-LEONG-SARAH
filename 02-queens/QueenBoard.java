@@ -68,14 +68,11 @@ public class QueenBoard {
     }
 
     private boolean solveHelp(int numQueens, int r, int c) {
-        // Special cases: issue with board size 1,5
+        // Special cases: issue with board size 1
         // base case
-        System.out.println(c);
         if (c>=board.length || columnSafe(c)==-1) { // stops if no queen in column or end of board
             return numQueens==c; // same num of queens as board size
         }
-
-        System.out.println("im running");
 
         if (addQueen(r, c)) {
             return solveHelp(numQueens+1, columnSafe(c+1), c+1);
@@ -85,8 +82,7 @@ public class QueenBoard {
     }
 
     public boolean solve(){ //IllegalStateException
-        solveHelp(0, 0, 0);
-        return false;
+        return solveHelp(0, 0, 0);
     }
 
     public int countSolutions() {
