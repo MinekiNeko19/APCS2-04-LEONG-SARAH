@@ -28,7 +28,7 @@ public class QueenBoard {
                     if (r-i==j-c) {board[i][j]-=1;} // +slope diagonal
                 }
             }
-            board[r][c] = 1; // danger b/c it was a spot that was safe before but we checked and it is now
+            board[r][c] = 0; // safe b/c the rows are all being checked
         }
     }
 
@@ -51,40 +51,29 @@ public class QueenBoard {
         return ans;
     }
 
-    private int columnSafe(int c) { // returns index of a safe row in the column (top down)
-        if (c < board.length && c >= 0) {
-            for (int i = 0; i < board.length; i++) {
-                if (board[i][c]==0) return i;
-            }
-        }
-        return -1; // no safe 0s
-    }
-
-    private int queenRow(int c) { // returns index of a queen in the column
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][c]==-1) return i;
-        }
-        return -1; // no queens
-    }
-
     private boolean solveHelp(int numQueens, int r, int c) {
-        // base case
+        // issues: when a whole column doesn't work and we go and move to the other column, the formerly dangerous spots aren't cleared
+        // System.out.println(toString());
+        //base case
         if (c>=board.length) { // stops if no queen at end of board
             return numQueens==board.length; // same num of queens as board size
         }
 
-        if (columnSafe(c)==-1) {
-            if (c==0) return false; // not solvable then
-            removeQueen(queenRow(c-1), c-1); // removes last row's queen since it didn't work
-            return solveHelp(numQueens-1, columnSafe(c-1), c-1);
-        }
-
         // recursion
-        if (addQueen(r, c)) {
-            return solveHelp(numQueens+1, columnSafe(c+1), c+1);
+        // checks if you can add a queen in each row
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][c]==0) {
+                addQueen(i, c);
+                if (solveHelp(numQueens+1, 0, c+1)) { // row might be useless here idk
+                    return true;
+                }
+                removeQueen(i, c);
+            }
         }
-        removeQueen(r, c); // queen added to board is removed or nothing happens
-        return solveHelp(numQueens, columnSafe(c), c);
+        // all rows didn't work
+        return false;
+        // since the former queens weren't marked,
+        // backtrack and continue the initial for loop
     }
 
     public boolean solve(){ //IllegalStateException
