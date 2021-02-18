@@ -41,9 +41,9 @@ public class QueenBoard {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 if (board[i][j]==-1) {ans += "Q";}
-                //temporary
-                else {ans += board[i][j];}
-                // else {ans += "_";}
+                // //temporary
+                // else {ans += board[i][j];}
+                else {ans += "_";}
                 if (j==board.length-1) {ans += "\n";}
                 else {ans += " ";}
             }
