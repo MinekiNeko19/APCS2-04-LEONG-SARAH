@@ -52,8 +52,6 @@ public class QueenBoard {
     }
 
     private boolean solveHelp(int numQueens, int c) {
-        // issues: when a whole column doesn't work and we go and move to the other column, the formerly dangerous spots aren't cleared
-        // System.out.println(toString());
         //base case
         if (c>=board.length) { // stops if no queen at end of board
             return numQueens==board.length; // same num of queens as board size
@@ -84,6 +82,7 @@ public class QueenBoard {
     }
 
     public int countSolutions() {
+        if (board.length < 2) return board.length;
         int count = 0;
         if (solve()) count += 1; // throws the exception.
         return count;
