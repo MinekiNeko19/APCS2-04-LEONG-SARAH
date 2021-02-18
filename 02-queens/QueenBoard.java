@@ -51,7 +51,7 @@ public class QueenBoard {
         return ans;
     }
 
-    private boolean solveHelp(int numQueens, int r, int c) {
+    private boolean solveHelp(int numQueens, int c) {
         // issues: when a whole column doesn't work and we go and move to the other column, the formerly dangerous spots aren't cleared
         // System.out.println(toString());
         //base case
@@ -64,7 +64,7 @@ public class QueenBoard {
         for (int i = 0; i < board.length; i++) {
             if (board[i][c]==0) {
                 addQueen(i, c);
-                if (solveHelp(numQueens+1, 0, c+1)) { // row might be useless here idk
+                if (solveHelp(numQueens+1, c+1)) {
                     return true;
                 }
                 removeQueen(i, c);
@@ -76,12 +76,17 @@ public class QueenBoard {
         // backtrack and continue the initial for loop
     }
 
-    public boolean solve(){ //IllegalStateException
-        return solveHelp(0, 0, 0);
+    public boolean solve(){
+        if (board.length != 0 && board[0][0]!=0) {
+            throw new IllegalStateException();
+        }
+        return solveHelp(0, 0);
     }
 
     public int countSolutions() {
-        return 0;
+        int count = 0;
+        if (solve()) count += 1; // throws the exception.
+        return count;
     }
 
 }
