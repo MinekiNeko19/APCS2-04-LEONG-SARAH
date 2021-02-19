@@ -81,10 +81,32 @@ public class QueenBoard {
         return solveHelp(0, 0);
     }
 
+    private int countSolutions(int numQueens, int c) {
+        if (c>=board.length) { // stops if no queen at end of board
+            if  (numQueens==board.length) {
+                return 1;
+            }
+        }
+
+        // recursion
+        // checks if you can add a queen in each row
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][c]==0) {
+                addQueen(i, c);
+                if (solveHelp(numQueens+1, c+1)) {
+                    return 1;
+                }
+                removeQueen(i, c);
+            }
+        }
+        // all rows didn't work
+        return 0;
+    }
+
     public int countSolutions() {
         if (board.length < 2) return board.length;
         int count = 0;
-        if (solve()) count += 1; // throws the exception.
+        count += countSolutions(0,0);
         return count;
     }
 
