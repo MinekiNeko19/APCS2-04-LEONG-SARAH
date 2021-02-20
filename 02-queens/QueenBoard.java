@@ -103,10 +103,9 @@ public class QueenBoard {
     }
 
     public int countSolutions() {
+        if (board[0][0] != 0) throw new IllegalStateException();
         if (board.length < 2) return board.length;
-        int count = 0;
-        count += countSolutionsHelp(0,0);
-        return count;
+        return countSolutionsHelp(0,0);
     }
 
 }
