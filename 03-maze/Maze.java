@@ -20,22 +20,23 @@ public class Maze{
     */
     public Maze(String filename) throws FileNotFoundException{
         animate = false;
+        ArrayList<String> lines = new ArrayList<String>();
+
         try {
             File f = new File(filename);
             Scanner in = new Scanner(f);
-            char[][] maze;
-            ArrayList<String> lines = new ArrayList<String>();
             while (in.hasNextLine()) {
                 lines.add(in.nextLine());
             }
-            maze = new char[lines.size()][];
-            for (int i = 0; i < lines.size(); i++) {
-                maze[i] = lines.get(i).toCharArray();
-            }
-            return maze;
-
+            in.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
+        }
+
+        
+        maze = new char[lines.size()][];
+        for (int i = 0; i < lines.size(); i++) {
+            maze[i] = lines.get(i).toCharArray();
         }
     }
 
@@ -64,7 +65,15 @@ public class Maze{
         It should look like the text file with some characters replaced.
     */
     public String toString(){
-            return "WRITE THIS METHOD";
+        String board = "";
+        if (maze.length <= 0) return board;
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                board+= maze[i][j];
+            }
+            board += "\n";
+        }
+        return board;
     }
 
     /*Wrapper Solve Function returns the helper function
