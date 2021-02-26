@@ -127,7 +127,7 @@ public class Maze{
 
         // base case: E is found
         if (maze[row][col]=='E') {
-            return count;
+            return count-1;
         }
         // recursion if spaces: order of checking WNES
         maze[row][col] = '@';
