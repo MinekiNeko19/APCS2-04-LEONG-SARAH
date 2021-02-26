@@ -19,7 +19,7 @@ public class Maze{
         So you don't have to check for out of bounds!
     */
     public Maze(String filename) throws FileNotFoundException{
-        animate = false;
+        animate = true;
         ArrayList<String> lines = new ArrayList<String>();
 
         try {
@@ -130,19 +130,19 @@ public class Maze{
         }
         // recursion if spaces: order of checking WNES
         maze[row][col] = '@';
-        if (maze[row-1][col]==' ') { // left
-            count += solve(row-1,col,row,col);
+        count++;
+        if (maze[row-1][col]==' ' || maze[row-1][col]=='E') { // left
+            return count += solve(row-1,col,row,col);
         }
-        if (maze[row][col+1]==' ') { // up
-            count += solve(row,col+1,row,col);
+        if (maze[row][col+1]==' ' || maze[row][col+1]=='E') { // up
+            return count += solve(row,col+1,row,col);
         }
-        if (maze[row+1][col]==' ') { // right
-            count += solve(row+1,col,row,col);
+        if (maze[row+1][col]==' ' || maze[row+1][col]=='E') { // right
+            return count += solve(row+1,col,row,col);
         }
-        if (maze[row][col-1]==' ') { // down
-            count += solve(row,col-1,row,col);
+        if (maze[row][col-1]==' ' || maze[row][col-1]=='E') { // down
+            return count += solve(row,col-1,row,col);
         }
-        // base case: if no spaces to explore, go back and check
         // count--;
         // maze[row][col] = '.';
         // count += solve(prevRow, prevCol, row, col);
