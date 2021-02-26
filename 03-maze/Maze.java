@@ -92,7 +92,7 @@ public class Maze{
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[i][j]=='S') {
                     maze[i][j]='@';
-                    return solve(i,j,i,j);
+                    return solve(i,j);
                 }
             }
         }
@@ -114,7 +114,7 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col, int prevRow, int prevCol){ //you can add more parameters since this is private
+    private int solve(int row, int col){ //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if(animate){
             gotoTop();
@@ -122,7 +122,8 @@ public class Maze{
             wait(50);
         }
 
-        int count = 1; // 1 b/c the start = @ is provided by wrapper
+        int count = 1; // adds current position to count
+        boolean noSpace = false;
 
         // base case: E is found
         if (maze[row][col]=='E') {
@@ -131,20 +132,37 @@ public class Maze{
         // recursion if spaces: order of checking WNES
         maze[row][col] = '@';
         if (maze[row-1][col]==' ' || maze[row-1][col]=='E') { // left
-            return count += solve(row-1,col,row,col);
+            return count += solve(row-1,col);
         }
         if (maze[row][col+1]==' ' || maze[row][col+1]=='E') { // up
-            return count += solve(row,col+1,row,col);
+            return count += solve(row,col+1);
         }
         if (maze[row+1][col]==' ' || maze[row+1][col]=='E') { // right
-            return count += solve(row+1,col,row,col);
+            return count += solve(row+1,col);
         }
         if (maze[row][col-1]==' ' || maze[row][col-1]=='E') { // down
-            return count += solve(row,col-1,row,col);
+            return count += solve(row,col-1);
+        } else {
+            noSpace = true;
         }
-        // count--;
-        // maze[row][col] = '.';
-        // count += solve(prevRow, prevCol, row, col);
+
+        if (noSpace) {
+            count--;
+            maze[row][col] = '.';
+            // find the last step
+            if (maze[row-1][col]=='@') { // left
+                return count += solve(row-1,col);
+            }
+            if (maze[row][col+1]=='@') { // up
+                return count += solve(row,col+1);
+            }
+            if (maze[row+1][col]=='@') { // right
+                return count += solve(row+1,col);
+            }
+            if (maze[row][col-1]=='@') { // down
+                return count += solve(row,col-1);
+            }
+        }
 
         return -1; //so it compiles
     }
