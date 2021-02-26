@@ -81,13 +81,23 @@ public class Maze{
         Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public int solve(){
-            //only clear the terminal if you are running animation
-            if(animate){
-                clearTerminal();
+        //only clear the terminal if you are running animation
+        if(animate){
+            clearTerminal();
+        }
+
+        //start solving at the location of the s.
+        //return solve(???,???);
+        for (int i = 0; i < maze.length;i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                if (maze[i][j]=='S') {
+                    maze[i][j]='@';
+                    return solve(i,j);
+                }
             }
-            //start solving at the location of the s.
-            //return solve(???,???);
-            return 0;
+        }
+
+        return 0;
     }
 
     /*
@@ -99,7 +109,8 @@ public class Maze{
         Returns -1 when the maze has no solution.
 
         Postcondition:
-        The S and 'E' remain the same.
+        The 'S' is replaced with '@'
+        The 'E' remain the same
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
@@ -111,7 +122,15 @@ public class Maze{
             wait(50);
         }
 
-        //COMPLETE SOLVE
+        int count = 1; // 1 b/c the start is provided by wrapper = @
+
+        // base case: if no spaces to explore go back and check OR E is found
+        // if (maze[row][col]=='E') {
+        //     return count;
+        // }
+        // recursion if spaces: order of checking WNES
+
+
         return -1; //so it compiles
     }
 }
