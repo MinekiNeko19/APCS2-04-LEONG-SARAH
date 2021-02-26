@@ -19,7 +19,7 @@ public class Maze{
         So you don't have to check for out of bounds!
     */
     public Maze(String filename) throws FileNotFoundException{
-        animate = true;
+        animate = false;
         ArrayList<String> lines = new ArrayList<String>();
 
         try {
@@ -147,7 +147,7 @@ public class Maze{
         }
 
         if (noSpace) {
-            count--;
+            count=-1; // subtract the extra step
             maze[row][col] = '.';
             // find the last step
             if (maze[row-1][col]=='@') { // left
