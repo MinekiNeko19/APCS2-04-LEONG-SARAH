@@ -146,6 +146,10 @@ public class Maze{
             noSpace = true;
         }
 
+        // won't always take the most efficient path ex.:
+        // end is west but south is also empty
+        // empty rectangle with S in top right and E in bottom left
+
         if (noSpace) {
             count=-1; // subtract the extra step
             maze[row][col] = '.';
