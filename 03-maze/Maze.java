@@ -130,7 +130,6 @@ public class Maze{
         }
         // recursion if spaces: order of checking WNES
         maze[row][col] = '@';
-        count++;
         if (maze[row-1][col]==' ' || maze[row-1][col]=='E') { // left
             return count += solve(row-1,col,row,col);
         }
