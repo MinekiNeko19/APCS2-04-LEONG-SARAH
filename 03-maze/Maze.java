@@ -92,7 +92,7 @@ public class Maze{
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[i][j]=='S') {
                     maze[i][j]='@';
-                    return solve(i,j);
+                    return solve(i,j,i,j);
                 }
             }
         }
@@ -114,7 +114,7 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
+    private int solve(int row, int col, int prevRow, int prevCol){ //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if(animate){
             gotoTop();
@@ -122,14 +122,30 @@ public class Maze{
             wait(50);
         }
 
-        int count = 1; // 1 b/c the start is provided by wrapper = @
+        int count = 1; // 1 b/c the start = @ is provided by wrapper
 
-        // base case: if no spaces to explore go back and check OR E is found
-        // if (maze[row][col]=='E') {
-        //     return count;
-        // }
+        // base case: E is found
+        if (maze[row][col]=='E') {
+            return count;
+        }
         // recursion if spaces: order of checking WNES
-
+        maze[row][col] = '@';
+        if (maze[row-1][col]==' ') { // left
+            count += solve(row-1,col,row,col);
+        }
+        if (maze[row][col+1]==' ') { // up
+            count += solve(row,col+1,row,col);
+        }
+        if (maze[row+1][col]==' ') { // right
+            count += solve(row+1,col,row,col);
+        }
+        if (maze[row][col-1]==' ') { // down
+            count += solve(row,col-1,row,col);
+        }
+        // base case: if no spaces to explore, go back and check
+        // count--;
+        // maze[row][col] = '.';
+        // count += solve(prevRow, prevCol, row, col);
 
         return -1; //so it compiles
     }
