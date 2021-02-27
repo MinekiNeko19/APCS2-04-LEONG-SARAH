@@ -133,13 +133,13 @@ public class Maze{
         maze[row][col] = '@';
         if (maze[row-1][col]==' ' || maze[row-1][col]=='E') { // left
             return count += solve(row-1,col);
-        }
+        } else
         if (maze[row][col+1]==' ' || maze[row][col+1]=='E') { // up
             return count += solve(row,col+1);
-        }
+        } else
         if (maze[row+1][col]==' ' || maze[row+1][col]=='E') { // right
             return count += solve(row+1,col);
-        }
+        } else
         if (maze[row][col-1]==' ' || maze[row][col-1]=='E') { // down
             return count += solve(row,col-1);
         } else {
@@ -169,5 +169,15 @@ public class Maze{
         }
 
         return -1; //so it compiles
+    }
+
+    public static char[][] MazeGenerator(int row, int col) {
+        char[][] maze = new char[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0;j < col; j++) {
+                maze[i][j] = '#';
+            }
+        }
+        return maze;
     }
 }
