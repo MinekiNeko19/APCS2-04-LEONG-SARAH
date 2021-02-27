@@ -171,13 +171,25 @@ public class Maze{
         return -1; //so it compiles
     }
 
-    public static char[][] MazeGenerator(int row, int col) {
-        char[][] maze = new char[row][col];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0;j < col; j++) {
+
+    
+
+    public Maze(int rows, int cols) { // constructor for char[][] boards
+        maze = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0;j < cols; j++) {
                 maze[i][j] = '#';
             }
         }
-        return maze;
+        animate = false;
+
+        int startR = (int)(Math.random() * cols-1 + 1);
+        int startC = (int)(Math.random() * cols-1 + 1);
+        MazeCarve(startR, startC);
+    }
+
+   
+    private void MazeCarve(int row, int col) {
+        maze[row][col] = ' ';
     }
 }
