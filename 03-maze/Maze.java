@@ -183,13 +183,53 @@ public class Maze{
         }
         animate = false;
 
-        int startR = (int)(Math.random() * cols-1 + 1);
-        int startC = (int)(Math.random() * cols-1 + 1);
+        int startR = (int)(Math.random() * (cols-2) + 1);
+        int startC = (int)(Math.random() * (cols-2) + 1);
         MazeCarve(startR, startC);
     }
 
-   
+    // private boolean safe(int row, int col) {
+    //     if (row == 0 || row == maze.length) return false;
+    //     if (col == 0 || col == maze[row].length) return false;
+    //     int walls = 0;
+    //     if (maze[row-1][col] <= 0) { // left
+    //         walls++;
+    //     }
+    //     if (maze[row+1][col] <= 0) { // right
+    //         walls++;
+    //     }
+    //     if (maze[row][col+1] <= 0) { // up
+    //         walls++;
+    //     }
+    //     if (maze[row][col-1] <= 0) { // down
+    //         walls++;
+    //     }
+    //     return walls >= 3;
+    // }
+
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
+        // int path = (int)(Math.random() * 4);
+        // System.out.println(path);
+        // if (path == 0) { // left
+        //     if (safe(row-1, col)) {
+        //         MazeCarve(row-1, col);
+        //     }
+        // }        
+        // if (path == 1) { // right
+        //     if (safe(row-1, col)) {
+        //         MazeCarve(row-1, col);
+        //     }
+        // }
+        // if (path == 2) { // up
+        //     if (safe(row-1, col)) {
+        //         MazeCarve(row-1, col);
+        //     }
+        // }
+        // if (path == 3) { // down
+        //     if (safe(row, col-1)) {
+        //         MazeCarve(row, col-1);
+        //     }
+        // }
     }
 }
