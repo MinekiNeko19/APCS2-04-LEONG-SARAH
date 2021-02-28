@@ -185,50 +185,65 @@ public class Maze{
 
         int startR = (int)(Math.random() * (cols-2) + 1);
         int startC = (int)(Math.random() * (cols-2) + 1);
+
+        System.out.println(startR); System.out.println(startC);
+
         MazeCarve(startR, startC);
     }
 
-    // private boolean safe(int row, int col) {
-    //     if (row == 0 || row == maze.length) return false;
-    //     if (col == 0 || col == maze[row].length) return false;
-    //     int walls = 0;
-    //     if (maze[row-1][col] <= 0) { // left
-    //         walls++;
-    //     }
-    //     if (maze[row+1][col] <= 0) { // right
-    //         walls++;
-    //     }
-    //     if (maze[row][col+1] <= 0) { // up
-    //         walls++;
-    //     }
-    //     if (maze[row][col-1] <= 0) { // down
-    //         walls++;
-    //     }
-    //     return walls >= 3;
-    // }
+    private boolean safe(int row, int col) {
+        if (row == 0 || row == maze.length-1) return false;
+        if (col == 0 || col == maze[row].length-1) return false;
+        int walls = 0;
+        if (maze[row-1][col] == '#') { // up
+            walls++;
+        }
+        if (maze[row+1][col] == '#') { // down
+            walls++;
+        }
+        if (maze[row][col+1] == '#') { // right
+            walls++;
+        }
+        if (maze[row][col-1] == '#') { // left
+            walls++;
+        }
+        return walls >= 3;
+    }
 
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
-        // int path = (int)(Math.random() * 4);
+        int path = (int)(Math.random() * 4);
         // System.out.println(path);
-        // if (path == 0) { // left
+
+        if (safe(row, col+1)) {
+            MazeCarve(row, col+1);
+        }
+        // if (path == 0) { // up
         //     if (safe(row-1, col)) {
         //         MazeCarve(row-1, col);
+        //     } else {
+        //         MazeCarve(row, col);
         //     }
         // }        
-        // if (path == 1) { // right
-        //     if (safe(row-1, col)) {
-        //         MazeCarve(row-1, col);
+        // if (path == 1) { // down
+        //     if (safe(row+1, col)) {
+        //         MazeCarve(row+1, col);
+        //     } else {
+        //         MazeCarve(row, col);
         //     }
         // }
-        // if (path == 2) { // up
-        //     if (safe(row-1, col)) {
-        //         MazeCarve(row-1, col);
+        // if (path == 2) { // right
+        //     if (safe(row, col+1)) {
+        //         MazeCarve(row, col+1);
+        //     } else {
+        //         MazeCarve(row, col);
         //     }
         // }
-        // if (path == 3) { // down
+        // if (path == 3) { // left
         //     if (safe(row, col-1)) {
         //         MazeCarve(row, col-1);
+        //     } else {
+        //         MazeCarve(row, col);
         //     }
         // }
     }
