@@ -19,7 +19,7 @@ public class Maze{
         So you don't have to check for out of bounds!
     */
     public Maze(String filename) throws FileNotFoundException{
-        animate = false;
+        animate = true;
         ArrayList<String> lines = new ArrayList<String>();
 
         try {
@@ -183,10 +183,12 @@ public class Maze{
         }
         animate = false;
 
-        int startR = (int)(Math.random() * (cols-2) + 1);
-        int startC = (int)(Math.random() * (cols-2) + 1);
+        // int startR = (int)(Math.random() * (cols-2) + 1);
+        // int startC = (int)(Math.random() * (cols-2) + 1);
+        int startR = 8;
+        int startC = 8;
 
-        System.out.println(startR); System.out.println(startC);
+        System.out.println(startR + ", " + startC);
 
         MazeCarve(startR, startC);
     }
@@ -195,16 +197,16 @@ public class Maze{
         if (row == 0 || row == maze.length-1) return false;
         if (col == 0 || col == maze[row].length-1) return false;
         int walls = 0;
-        if (maze[row-1][col] == '#') { // up
+        if (maze[row-1][col] == '#') { // up 0
             walls++;
         }
-        if (maze[row+1][col] == '#') { // down
+        if (maze[row+1][col] == '#') { // down 1
             walls++;
         }
-        if (maze[row][col+1] == '#') { // right
+        if (maze[row][col+1] == '#') { // right 2
             walls++;
         }
-        if (maze[row][col-1] == '#') { // left
+        if (maze[row][col-1] == '#') { // left 3
             walls++;
         }
         return walls >= 3;
@@ -212,39 +214,36 @@ public class Maze{
 
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
-        int path = (int)(Math.random() * 4);
-        // System.out.println(path);
 
-        if (safe(row, col+1)) {
-            MazeCarve(row, col+1);
+        // int[] safeBranch = new int[]{0,0,0,0,0};
+        // if (safe(row-1, col)) {
+        //     safeBranch[0] = 1;
+        // } 
+        // if (safe(row+1, col)) {
+        //     safeBranch[1] = 1;
+        // }
+        // if (safe(row, col+1)) {
+        //     safeBranch[2] = 1;
+        // }
+        // if (safe(row, col-1)) {
+        //     safeBranch[3] = 1;
+        // }
+        System.out.println(toString());
+
+        for (int i = 0; i < 4; i++) {
+            int path = (int)(Math.random() * 5);
+            if (path == 0 && safe(row-1,col)) {
+                MazeCarve(row-1, col);
+            }
+            if (path == 1 && safe(row+1,col)) {
+                MazeCarve(row+1, col);
+            }
+            if (path == 2 && safe(row,col+1)) {
+                MazeCarve(row, col+1);
+            }
+            if (path == 3 && safe(row,col-1)) {
+                MazeCarve(row, col-1);
+            }
         }
-        // if (path == 0) { // up
-        //     if (safe(row-1, col)) {
-        //         MazeCarve(row-1, col);
-        //     } else {
-        //         MazeCarve(row, col);
-        //     }
-        // }        
-        // if (path == 1) { // down
-        //     if (safe(row+1, col)) {
-        //         MazeCarve(row+1, col);
-        //     } else {
-        //         MazeCarve(row, col);
-        //     }
-        // }
-        // if (path == 2) { // right
-        //     if (safe(row, col+1)) {
-        //         MazeCarve(row, col+1);
-        //     } else {
-        //         MazeCarve(row, col);
-        //     }
-        // }
-        // if (path == 3) { // left
-        //     if (safe(row, col-1)) {
-        //         MazeCarve(row, col-1);
-        //     } else {
-        //         MazeCarve(row, col);
-        //     }
-        // }
     }
 }
