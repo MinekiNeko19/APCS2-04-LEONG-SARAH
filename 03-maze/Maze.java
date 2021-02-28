@@ -214,20 +214,6 @@ public class Maze{
 
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
-
-        // int[] safeBranch = new int[]{0,0,0,0,0};
-        // if (safe(row-1, col)) {
-        //     safeBranch[0] = 1;
-        // } 
-        // if (safe(row+1, col)) {
-        //     safeBranch[1] = 1;
-        // }
-        // if (safe(row, col+1)) {
-        //     safeBranch[2] = 1;
-        // }
-        // if (safe(row, col-1)) {
-        //     safeBranch[3] = 1;
-        // }
         System.out.println(toString());
 
         for (int i = 0; i < 4; i++) {
