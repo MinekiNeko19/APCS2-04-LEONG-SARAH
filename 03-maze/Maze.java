@@ -214,21 +214,29 @@ public class Maze{
 
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
+        boolean[] checked = new boolean[]{false,false,false,false};
+        
         System.out.println(toString());
 
         for (int i = 0; i < 4; i++) {
             int path = (int)(Math.random() * 5);
+            boolean done = checked[0] && checked[1] && checked[2] && checked[3];
+
             if (path == 0 && safe(row-1,col)) {
                 MazeCarve(row-1, col);
+                checked[0]=true;
             }
             if (path == 1 && safe(row+1,col)) {
                 MazeCarve(row+1, col);
+                checked[1]=true;
             }
             if (path == 2 && safe(row,col+1)) {
                 MazeCarve(row, col+1);
+                checked[2]=true;
             }
             if (path == 3 && safe(row,col-1)) {
                 MazeCarve(row, col-1);
+                checked[3]=true;
             }
         }
     }
