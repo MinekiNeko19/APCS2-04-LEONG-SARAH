@@ -189,12 +189,10 @@ public class Maze{
         }
         animate = false;
 
-        // int startR = (int)(Math.random() * (cols-2) + 1);
-        // int startC = (int)(Math.random() * (cols-2) + 1);
-        int startR = 8;
-        int startC = 8;
+        int startR = (int)(Math.random() * (cols-2) + 1);
+        int startC = (int)(Math.random() * (cols-2) + 1);
 
-        System.out.println(startR + ", " + startC);
+        // System.out.println(startR + ", " + startC);
 
         MazeCarve(startR, startC);
     }
@@ -221,16 +219,12 @@ public class Maze{
     private void MazeCarve(int row, int col) {
         maze[row][col] = ' ';
         boolean[] checked = new boolean[]{false,false,false,false};
-        
-        System.out.println(toString());
 
         while (!(checked[0] && checked[1] && checked[2] && checked[3])) {
             int path = (int)(Math.random() * 4);
             while (checked[path]) {
                 path = (int)(Math.random() * 4);
             }
-            
-            System.out.println(path);
 
             if (path == 0) { // up
                 checked[0]=true;
