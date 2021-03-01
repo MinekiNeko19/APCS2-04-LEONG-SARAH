@@ -224,25 +224,37 @@ public class Maze{
         
         System.out.println(toString());
 
-        for (int i = 0; i < 4; i++) {
-            int path = (int)(Math.random() * 5);
-            boolean done = checked[0] && checked[1] && checked[2] && checked[3];
+        while (!(checked[0] && checked[1] && checked[2] && checked[3])) {
+            int path = (int)(Math.random() * 4);
+            while (checked[path]) {
+                path = (int)(Math.random() * 4);
+            }
+            
+            System.out.println(path);
 
-            if (path == 0 && safe(row-1,col)) {
-                MazeCarve(row-1, col);
+            if (path == 0) { // up
                 checked[0]=true;
+                if (safe(row-1,col)) {
+                    MazeCarve(row-1, col);
+                }
             }
-            if (path == 1 && safe(row+1,col)) {
-                MazeCarve(row+1, col);
+            if (path == 1) { // down
                 checked[1]=true;
+                if (safe(row+1,col)) {
+                    MazeCarve(row+1, col);
+                }
             }
-            if (path == 2 && safe(row,col+1)) {
-                MazeCarve(row, col+1);
+            if (path == 2) { // right
                 checked[2]=true;
+                if (safe(row,col+1)) {
+                    MazeCarve(row, col+1);
+                }
             }
-            if (path == 3 && safe(row,col-1)) {
-                MazeCarve(row, col-1);
+            if (path == 3) { // left
                 checked[3]=true;
+                if (safe(row,col-1)) {
+                    MazeCarve(row, col-1);
+                }
             }
         }
     }
