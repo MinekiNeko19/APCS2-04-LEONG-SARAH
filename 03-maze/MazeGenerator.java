@@ -1,5 +1,5 @@
 public class MazeGenerator {
-    public static void generate(char[][] maze) {
+    public static void generate(char[][] maze, int rows, int cols, int startrow, int startcol) {
         if (maze.length != 0 && maze[0].length != 0) {
 
             int startR = (int)(Math.random() * (maze.length-2) + 1);
