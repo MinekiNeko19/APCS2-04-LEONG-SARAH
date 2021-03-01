@@ -61,6 +61,12 @@ public class Maze{
         System.out.println("\033[1;1H");
     }
 
+    private static String colorize(String s){
+        s = s.replace("@", "\033[32m\033[49m@\033[0m");
+        s = s.replace("#", "\033[37m\033[47m#\033[0m");
+        s = s.replace("E", "\033[35m\033[49mE\033[0m");
+        return s;
+      }
     /*Return the string that represents the maze.
         It should look like the text file with some characters replaced.
     */
@@ -73,7 +79,7 @@ public class Maze{
             }
             board += "\n";
         }
-        return board;
+        return colorize(board);
     }
 
     /*Wrapper Solve Function returns the helper function
