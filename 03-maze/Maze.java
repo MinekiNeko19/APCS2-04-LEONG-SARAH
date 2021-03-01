@@ -189,7 +189,7 @@ public class Maze{
         }
         animate = false;
 
-        int startR = (int)(Math.random() * (cols-2) + 1);
+        int startR = (int)(Math.random() * (rows-2) + 1);
         int startC = (int)(Math.random() * (cols-2) + 1);
 
         // System.out.println(startR + ", " + startC);
