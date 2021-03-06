@@ -107,32 +107,34 @@ public class USACO {
             // move from start to end
             // places start
             map[sy][sx]='b';
+            toString(map);
+            toString(numBessies);
             for (int i = 0; i < moves; i++) { // counts steps/seconds
+                //change numBessies
                 for (int y = 0; y < rows; y++) {
                     for (int x = 0; x < cols; x++) {
-                        if (map[y][x]=='b') {
+                        if (map[y][x]=='b'  && map[y][x]!='*') {
                             numBessies[y][x] = 0;
-                            if (y-1 >= 0) {
+                            if (y-1 >= 0 && map[y-1][x]!='*') {
                                 numBessies[y-1][x] += 1;
-                                map[y-1][x] = 'b';
                             }
-                            if (y+1 < rows) {
+                            if (y+1 < rows && map[y+1][x]!='*') {
                                 numBessies[y+1][x] += 1;
-                                map[y+1][x] = 'b';
                             }
-                            if (x-1 >= 0) {
+                            if (x-1 >= 0 && map[y][x-1]!='*') {
                                 numBessies[y][x-1] += 1;
-                                map[y][x-1] = 'b';
                             }
-                            if (x+1 < cols){
+                            if (x+1 < cols && map[y][x+1]!='*'){
                                 numBessies[y][x+1] += 1;
-                                map[y][x+1] = 'b';
                             }
+                            map[y][x] = '.';
                         }
-                        map[y][x] = '.';
                     }
                 }
+                System.out.println("Time: " + (i + 1) + " seconds passed");
+                System.out.println("Map");
                 toString(map);
+                System.out.println("numBessies");
                 toString(numBessies);
             }          
             return numBessies[ey][ex];
