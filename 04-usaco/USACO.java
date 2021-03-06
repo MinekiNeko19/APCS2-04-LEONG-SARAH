@@ -106,34 +106,36 @@ public class USACO {
 
             // move from start to end
             // places start
-            // map[sy][sx]='b';
-            // for (int i = 0; i < moves; i++) { // counts steps/seconds
-            //     for (int y = 0; y < rows; y++) {
-            //         for (int x = 0; x < cols; x++) {
-            //             if (map[y][x]=='b') {
-            //                 numBessies[y][x] = 0;
-            //                 if (y-1 >= 0) {
-            //                     numBessies[y-1][x] += 1;
-            //                     map[y-1][x] = 'b';
-            //                 }
-            //                 if (y+1 < rows) {
-            //                     numBessies[y+1][x] += 1;
-            //                     map[y+1][x] = 'b';
-            //                 }
-            //                 if (x-1 >= 0) {
-            //                     numBessies[y][x-1] += 1;
-            //                     map[y][x-1] = 'b';
-            //                 }
-            //                 if (x+1 < cols){
-            //                     numBessies[y][x+1] += 1;
-            //                     map[y][x+1] = 'b';
-            //                 }
-            //             }
-            //             map[y][x] = '.';
-            //         }
-            //     }
-            // }          
-            // return numBessies[ey][ex];
+            map[sy][sx]='b';
+            for (int i = 0; i < moves; i++) { // counts steps/seconds
+                for (int y = 0; y < rows; y++) {
+                    for (int x = 0; x < cols; x++) {
+                        if (map[y][x]=='b') {
+                            numBessies[y][x] = 0;
+                            if (y-1 >= 0) {
+                                numBessies[y-1][x] += 1;
+                                map[y-1][x] = 'b';
+                            }
+                            if (y+1 < rows) {
+                                numBessies[y+1][x] += 1;
+                                map[y+1][x] = 'b';
+                            }
+                            if (x-1 >= 0) {
+                                numBessies[y][x-1] += 1;
+                                map[y][x-1] = 'b';
+                            }
+                            if (x+1 < cols){
+                                numBessies[y][x+1] += 1;
+                                map[y][x+1] = 'b';
+                            }
+                        }
+                        map[y][x] = '.';
+                    }
+                }
+                toString(map);
+                toString(numBessies);
+            }          
+            return numBessies[ey][ex];
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
         }
@@ -141,6 +143,14 @@ public class USACO {
     }
 
     private static void toString(char[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    private static void toString(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 System.out.print(arr[i][j] + " ");
