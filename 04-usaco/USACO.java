@@ -30,8 +30,8 @@ public class USACO {
             toString(instructions);
 
             // run the instructions
-            int highest = 0;
             for (int i = 0; i < instructions.length; i++) { // what instruction we are on
+                int highest = 0;
                 // find the highest elevation
                 for (int y = instructions[i][0]; y <= instructions[i][0]+2; y++) { //row
                     for (int x = instructions[i][1]; x <= instructions[i][1]+2; x++) { // col
@@ -40,19 +40,20 @@ public class USACO {
                         }
                     }
                 }
-                System.out.println(highest);
+                System.out.println("Original tallest: " + highest);
                 // change all the values to be level or lower
-                // highest = highest - instructions[i][2];
-                // if (highest < 0) highest = 0;
-                // System.out.println(highest);
-                // for (int y = instructions[i][0]; y <= instructions[i][0]+2; y++) { //row
-                //     for (int x = instructions[i][1]; x <= instructions[i][1]+2; x++) { // col
-                //         if (elevation[y][x] < highest) {
-                //             elevation[y][x] = highest;
-                //         }
-                //     }
-                // }
-                // toString(elevation);
+                highest = highest - instructions[i][2];
+                if (highest < 0) highest = 0;
+                System.out.println("New tallest: " + highest);
+
+                for (int y = instructions[i][0]; y <= instructions[i][0]+2; y++) { //row
+                    for (int x = instructions[i][1]; x <= instructions[i][1]+2; x++) { // col
+                        if (elevation[y][x] > highest) {
+                            elevation[y][x] = highest;
+                        }
+                    }
+                }
+                toString(elevation);
             }
 
         } catch (FileNotFoundException e) {
