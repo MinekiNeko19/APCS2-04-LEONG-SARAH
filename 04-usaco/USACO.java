@@ -17,7 +17,7 @@ public class USACO {
                     elevation[i][j] = in.nextInt();
                 }
             }
-            toString(elevation);
+            // toString(elevation);
             int[][] instructions = new int[n][3];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -27,7 +27,7 @@ public class USACO {
                 instructions[i][0] = instructions[i][0]-1;
                 instructions[i][1] = instructions[i][1]-1;
             }
-            toString(instructions);
+            // toString(instructions);
 
             // run the instructions
             for (int i = 0; i < instructions.length; i++) { // what instruction we are on
@@ -40,11 +40,11 @@ public class USACO {
                         }
                     }
                 }
-                System.out.println("Original tallest: " + highest);
+                // System.out.println("Original tallest: " + highest);
                 // change all the values to be level or lower
                 highest = highest - instructions[i][2];
                 if (highest < 0) highest = 0;
-                System.out.println("New tallest: " + highest);
+                // System.out.println("New tallest: " + highest);
 
                 for (int y = instructions[i][0]; y <= instructions[i][0]+2; y++) { //row
                     for (int x = instructions[i][1]; x <= instructions[i][1]+2; x++) { // col
@@ -53,8 +53,21 @@ public class USACO {
                         }
                     }
                 }
-                toString(elevation);
+                // toString(elevation);
             }
+
+            // obtain aggregated depth
+            int depth = 0;
+            for (int i = 0; i < elevation.length; i++) {
+                for (int j = 0; j < elevation[0].length; j++) {
+                    int temp = e - elevation[i][j];
+                    if (temp > 0) {
+                        depth += temp;
+                    }
+                }
+            }
+            // System.out.println(depth);
+            return depth * 72 * 72;
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
