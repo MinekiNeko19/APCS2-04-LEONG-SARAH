@@ -11,7 +11,10 @@ public class USACO {
             int cols = in.nextInt();
             int e = in.nextInt();
             int n = in.nextInt();
-            if (rows <= 0 || cols <= 0 || e <= 0) return 0;
+            if (rows <= 0 || cols <= 0 || e <= 0) {
+                in.close();
+                return 0;
+            }
 
             int[][] elevation = new int[rows][cols];
             for (int i = 0; i < rows; i++) {
@@ -87,6 +90,11 @@ public class USACO {
             int rows = in.nextInt();
             int cols = in.nextInt();
             int moves = in.nextInt();
+            if (rows <= 0 || cols <= 0) {
+                in.close();
+                return 0;
+            }
+
             long[][] numBessies = new long[rows][cols];
             char[][] map = new char[rows][cols];
             
