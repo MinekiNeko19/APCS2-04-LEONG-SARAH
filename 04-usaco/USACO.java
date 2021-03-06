@@ -25,10 +25,12 @@ public class USACO {
                 for (int j = 0; j < 3; j++) {
                     instructions[i][j] = in.nextInt();
                 }
+
                 // to adjust the coordinates to match 2d array dimensions
                 instructions[i][0] = instructions[i][0]-1;
                 instructions[i][1] = instructions[i][1]-1;
             }
+            in.close();
             // toString(instructions);
 
             // run the instructions
@@ -73,14 +75,72 @@ public class USACO {
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
+            return 0;
+        }
+    }
+
+    public static long silver(String filename) {
+        try {
+            // parse info
+            File f = new File(filename);
+            Scanner in = new Scanner(f);
+            int rows = in.nextInt();
+            int cols = in.nextInt();
+            int moves = in.nextInt();
+            int[][] numBessies = new int[rows][cols];
+            char[][] map = new char[rows][cols];
+            
+            for (int i = 0; i < rows; i++) {
+                String temp = in.next();
+                for (int j = 0; j < cols; j++) {
+                    map[i][j] = temp.charAt(j);
+                    if (temp.charAt(j)=='*') numBessies[i][j] = -1;
+                }
+            }
+            // toString(map);
+            int sy = in.nextInt()-1;
+            int sx = in.nextInt()-1;
+            int ey = in.nextInt()-1;
+            int ex = in.nextInt()-1;
+            in.close();
+
+            // move from start to end
+            // places start
+            // map[sy][sx]='b';
+            // for (int i = 0; i < moves; i++) { // counts steps/seconds
+            //     for (int y = 0; y < rows; y++) {
+            //         for (int x = 0; x < cols; x++) {
+            //             if (map[y][x]=='b') {
+            //                 numBessies[y][x] = 0;
+            //                 if (y-1 >= 0) {
+            //                     numBessies[y-1][x] += 1;
+            //                     map[y-1][x] = 'b';
+            //                 }
+            //                 if (y+1 < rows) {
+            //                     numBessies[y+1][x] += 1;
+            //                     map[y+1][x] = 'b';
+            //                 }
+            //                 if (x-1 >= 0) {
+            //                     numBessies[y][x-1] += 1;
+            //                     map[y][x-1] = 'b';
+            //                 }
+            //                 if (x+1 < cols){
+            //                     numBessies[y][x+1] += 1;
+            //                     map[y][x+1] = 'b';
+            //                 }
+            //             }
+            //             map[y][x] = '.';
+            //         }
+            //     }
+            // }          
+            // return numBessies[ey][ex];
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + filename);
         }
         return 0;
     }
-    public static long silver(String filename) {
-        return 0;
-    }
 
-    private static void toString(int[][] arr) {
+    private static void toString(char[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 System.out.print(arr[i][j] + " ");
