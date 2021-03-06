@@ -11,6 +11,8 @@ public class USACO {
             int cols = in.nextInt();
             int e = in.nextInt();
             int n = in.nextInt();
+            if (rows <= 0 || cols <= 0 || e <= 0) return 0;
+
             int[][] elevation = new int[rows][cols];
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
