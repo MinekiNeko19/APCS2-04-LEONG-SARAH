@@ -87,7 +87,7 @@ public class USACO {
             int rows = in.nextInt();
             int cols = in.nextInt();
             int moves = in.nextInt();
-            int[][] numBessies = new int[rows][cols];
+            long[][] numBessies = new long[rows][cols];
             char[][] map = new char[rows][cols];
             
             for (int i = 0; i < rows; i++) {
@@ -105,12 +105,9 @@ public class USACO {
             in.close();
 
             // move from start to end
-            // places start
             map[sy][sx]='b';
-            toString(map);
-            toString(numBessies);
             for (int i = 0; i < moves; i++) { // counts steps/seconds
-                //change numBessies
+                //change numBessies accordingly
                 for (int y = 0; y < rows; y++) {
                     for (int x = 0; x < cols; x++) {
                         if (map[y][x]=='b'  && map[y][x]!='*') {
@@ -131,11 +128,22 @@ public class USACO {
                         }
                     }
                 }
-                System.out.println("Time: " + (i + 1) + " seconds passed");
-                System.out.println("Map");
-                toString(map);
-                System.out.println("numBessies");
-                toString(numBessies);
+
+                //change map accordingly
+                for (int y = 0; y < rows; y++) {
+                    for (int x = 0; x < cols; x++) {
+                        if (numBessies[y][x] > 0) {
+                            map[y][x] = 'b';
+                        }
+                    }
+                }
+
+                // Seeing the 2d arrs
+                // System.out.println("Time: " + (i + 1) + " seconds passed");
+                // System.out.println("Map");
+                // toString(map);
+                // System.out.println("numBessies");
+                // toString(numBessies);
             }          
             return numBessies[ey][ex];
         } catch (FileNotFoundException e) {
@@ -152,7 +160,7 @@ public class USACO {
             System.out.println();
         }
     }
-    private static void toString(int[][] arr) {
+    private static void toString(long[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 System.out.print(arr[i][j] + " ");
