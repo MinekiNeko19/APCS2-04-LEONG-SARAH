@@ -9,24 +9,40 @@ public class Preliminary {
        */
     public static int partition (int [] data, int start, int end){
         int index = (int)(Math.random() * (end-start+1))+start;
+        // int index = 7;
         int pivot = data[index];
-        int current = data[0]; // to put the pivot in the first index
+        int current = data[start]; // to put the pivot in the first index
         int last = data[end]; // check what happens if the index chooses the last
-        int temp = data[1];
 
         System.out.println(
             "index: " + index +
             " pivot: " + pivot +
             " current: " + current +
-            " last: " + last +
-            " temp: " + temp
+            " last: " + last
         );
 
-        // data[0] = pivot;
-        // data[index] = current;
+        if (index == start) {
+            data[start] = data[0];
+            data[0] = pivot;
+        } else {
+            data[start] = data[0];
+            data[index] = current;
+            data[0] = pivot;
+        }
+        
 
+        toString(data);
 
-
+        // b/c pivot will be moved to index 1 and shift everything
+        start++;
+        end++;
+        
         return 0; 
+    }
+
+    private static void toString(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
     }
 }
