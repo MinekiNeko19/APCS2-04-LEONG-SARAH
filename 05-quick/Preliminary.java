@@ -32,6 +32,7 @@ public class Preliminary {
         }
         toString(data);
 
+        index = start; // now marks the original start of range
         // b/c pivot will be moved to index 1 and shift everything
         start++;
 
@@ -50,6 +51,13 @@ public class Preliminary {
             toString(data);
             // when the pivot is less than all the other values they all get shuffled around
         }
+        if (data[start] < pivot) {
+            data[0] = data[index];
+            data[index] = data[start];
+            data[start] = pivot;
+        }
+        toString(data);
+
         return 0; 
     }
 
