@@ -21,6 +21,7 @@ public class Preliminary {
             " last: " + last
         );
 
+        // puts pivot at front
         if (index == start) {
             data[start] = data[0];
             data[0] = pivot;
@@ -29,14 +30,26 @@ public class Preliminary {
             data[index] = current;
             data[0] = pivot;
         }
-        
-
         toString(data);
 
         // b/c pivot will be moved to index 1 and shift everything
         start++;
-        end++;
-        
+
+        // sort greater and less
+        while (start != end) {
+            System.out.println("Start: " + start + " End: " + end);
+            current = data[start];
+            last = data[end];
+            if (pivot < current) {
+                data[end] = current;
+                data[start] = last;
+                end--;
+            } else {
+                start++; 
+            }
+            toString(data);
+            // when the pivot is less than all the other values they all get shuffled around
+        }
         return 0; 
     }
 
@@ -44,5 +57,6 @@ public class Preliminary {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
+        System.out.println();
     }
 }
