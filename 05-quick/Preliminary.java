@@ -8,6 +8,10 @@ public class Preliminary {
        *@return the index of the final position of the pivot element.
        */
     public static int partition (int [] data, int start, int end){
+        if (data.length == 0) return -1;
+        if (data.length == 1) return 0;
+        if (start==end) return start;
+
         int index = (int)(Math.random() * (end-start+1))+start;
         // int index = 7;
         int pivot = data[index];
