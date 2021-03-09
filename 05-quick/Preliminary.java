@@ -8,8 +8,8 @@ public class Preliminary {
        *@return the index of the final position of the pivot element.
        */
     public static int partition (int [] data, int start, int end){
-        int index = (int)(Math.random() * (end-start+1))+start;
-        // int index = 7;
+        // int index = (int)(Math.random() * (end-start+1))+start;
+        int index = 7;
         int pivot = data[index];
         int current = data[start]; // to put the pivot in the first index
         int last = data[end]; // check what happens if the index chooses the last
@@ -51,10 +51,15 @@ public class Preliminary {
             toString(data);
             // when the pivot is less than all the other values they all get shuffled around
         }
+        System.out.println("\nstart: " + start + " data: " + data[start] + " pivot: " + pivot);
         if (data[start] < pivot) {
             data[0] = data[index];
             data[index] = data[start];
             data[start] = pivot;
+        } else {
+            data[0] = data[index];
+            data[index] = data[start-1];
+            data[start-1] = pivot; 
         }
         toString(data);
 
