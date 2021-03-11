@@ -1,23 +1,35 @@
-public class quick {
+public class Quick {
     //note: start/end have been renamed to lo/hi in this to match the diagram, otherwise it is the same.
     public static int partition(int[]data ,int lo, int hi){
         // lo start; hi end
         if (data.length == 0) return -1;
         if (data.length == 1) return 0;
         if (lo==hi) return lo;
+        
+        if (Math.abs(lo-hi) == 1) { // special case only two elements to look at
+            return (int)(Math.random()*2)+lo;
+        }
+        int index;
+        // finding median
+        while (!(data[lo] > data[(lo+hi)/2] && data[lo] < data[hi])) {
+            index = data[lo];
+            data[lo] = data[(lo+hi)/2];
+            data[(lo+hi)/2] = data[hi];
+            data[hi] = index;
+        }
+        index = lo;
+        System.out.println("Index of pivot: " + index + " value of pivot: " + data[index]);
 
-        int index = (lo+hi)/2;
-        // int index = 7; // for testing
         int pivot = data[index];
         int current = data[lo]; // to put the pivot in the first index
         int last = data[hi]; // check what happens if the index chooses the last
 
-        // System.out.println( // for testing
-        //     "index: " + index +
-        //     " pivot: " + pivot +
-        //     " current: " + current +
-        //     " last: " + last
-        // );
+        System.out.println( // for testing
+            "index: " + index +
+            " pivot: " + pivot +
+            " current: " + current +
+            " last: " + last
+        );
 
         // puts pivot at front
         if (index == lo) {
@@ -28,7 +40,7 @@ public class quick {
             data[index] = current;
             data[0] = pivot;
         }
-        // toString(data);
+        toString(data);
 
         index = lo; // now marks the original start of range
         // b/c pivot will be moved to index 1 and shift everything
@@ -36,7 +48,7 @@ public class quick {
 
         // sort greater and less
         while (lo != hi) {
-            // System.out.println("Start: " + start + " End: " + hi);
+            System.out.println("Start: " + lo + " End: " + hi);
             current = data[lo];
             last = data[hi];
             if (pivot < current) {
@@ -46,30 +58,45 @@ public class quick {
             } else {
                 lo++; 
             }
-            // toString(data);
+            toString(data);
         }
-        // System.out.println("\nstart: " + start + " data: " + data[start] + " pivot: " + pivot);
-        if (data[lo] < pivot) {
+        System.out.println("\nstart: " + lo + " data: " + data[lo] + " pivot: " + pivot);
+        if (data[lo] < pivot || (data[lo] == pivot && Math.random() >= 0.5)) {
             data[0] = data[index];
             data[index] = data[lo];
             data[lo] = pivot;
-            // toString(data);
+            toString(data);
             return lo;
-            // if pivot = data[start] then make it a 50/50
-        } else {
+        }
+        else {
             data[0] = data[index];
             data[index] = data[lo-1];
             data[lo-1] = pivot;
-            // toString(data);
+            toString(data);
             return lo-1;
         }
     }
+
     /*return the value that is the kth smallest value of the array.
     *@param data must have a length > 0
     *@param k is 0 to data.length-1 inclusive
     *@postcondition The array can be modified. (If we did not want to modify the array, we could make a copy before we start the process)
     */
     public static int quickselect(int []data, int k) {
+        return quickselect(data, k, 0, data.length-1);
+    }
+    private static int quickselect(int[] data, int k, int start, int end) {
+        // int pivind=partition(data, start, end);
+        // if (pivind == k) {
+        //     return data[pivind];
+        // }
+
+        // else if (pivind < k) {
+        //     return quickselect(data, k, start, pivind-1);
+        // }
+        // else {
+        //     return quickselect(data, k, pivind+1, end);
+        // }
         return 0;
     }
 
