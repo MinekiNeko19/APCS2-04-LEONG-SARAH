@@ -11,13 +11,18 @@ public class Quick {
         }
         int index;
         // finding median
-        while (!(data[lo] > data[(lo+hi)/2] && data[lo] < data[hi])) {
-            index = data[lo];
-            data[lo] = data[(lo+hi)/2];
-            data[(lo+hi)/2] = data[hi];
-            data[hi] = index;
+        int a = data[lo]; int b = data[hi]; int c = data[(hi-lo)/2 +lo];
+        int max = Math.max(Math.max(a, b),c); int min = Math.min(Math.min(a, b),c);
+        if (a != Math.max(Math.max(a, b),c) && a != Math.min(Math.min(a, b),c)) {
+            index = lo;
         }
-        index = lo;
+        if (b != Math.max(Math.max(a, b),c) && b != Math.min(Math.min(a, b),c)) {
+            index = lo;
+        }
+        if (c != Math.max(Math.max(a, b),c) && c != Math.min(Math.min(a, b),c)) {
+            index = (hi-lo)/2 + lo;
+        }
+
         System.out.println("Index of pivot: " + index + " value of pivot: " + data[index]);
 
         int pivot = data[index];
@@ -31,15 +36,15 @@ public class Quick {
             " last: " + last
         );
 
-        // puts pivot at front
-        if (index == lo) {
-            data[lo] = data[0];
-            data[0] = pivot;
-        } else {
-            data[lo] = data[0];
-            data[index] = current;
-            data[0] = pivot;
-        }
+        // // puts pivot at front
+        // if (index == lo) {
+        //     data[lo] = data[0];
+        //     data[0] = pivot;
+        // } else {
+        //     data[lo] = data[0];
+        //     data[index] = current;
+        //     data[0] = pivot;
+        // }
         toString(data);
 
         index = lo; // now marks the original start of range
