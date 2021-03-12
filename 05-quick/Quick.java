@@ -9,22 +9,9 @@ public class Quick {
         if (Math.abs(lo-hi) == 1) { // special case only two elements to look at
             return (int)(Math.random()*2)+lo;
         }
-        int index;
-        // finding median
-        int a = data[lo]; int b = data[hi]; int c = data[(hi-lo)/2 +lo];
-        int max = Math.max(Math.max(a, b),c); int min = Math.min(Math.min(a, b),c);
-        if (a != Math.max(Math.max(a, b),c) && a != Math.min(Math.min(a, b),c)) {
-            index = lo;
-        }
-        if (b != Math.max(Math.max(a, b),c) && b != Math.min(Math.min(a, b),c)) {
-            index = lo;
-        }
-        if (c != Math.max(Math.max(a, b),c) && c != Math.min(Math.min(a, b),c)) {
-            index = (hi-lo)/2 + lo;
-        }
-
-        System.out.println("Index of pivot: " + index + " value of pivot: " + data[index]);
-
+        
+        int index = (int)(Math.random() * (hi-lo+1))+lo;
+        // int index = 7;
         int pivot = data[index];
         int current = data[lo]; // to put the pivot in the first index
         int last = data[hi]; // check what happens if the index chooses the last
