@@ -42,7 +42,15 @@ public class Quick {
                 data[end] = current;
                 data[start] = last;
                 end--;
-            } else {
+            }
+            else if (pivot == current) {
+                if (Math.random() < 0.5) {
+                    data[end] = current;
+                    data[start] = last;
+                    end--;
+                }
+            } 
+            else {
                 start++; 
             }
             // toString(data);
@@ -150,10 +158,10 @@ public class Quick {
 
     private static void quicksort(int[] data, int start, int end, int lvl) {
         int index = partition(data, start, end);
-        System.out.println("Level: " + lvl + " Index: " + index);
-        toString(data);
-        System.out.println("start: " + start + " end: " + end);
-        System.out.println();
+        // System.out.println("Level: " + lvl + " Index: " + index);
+        // toString(data);
+        // System.out.println("start: " + start + " end: " + end);
+        // System.out.println();
 
         if (!(index-1 <= start)) {
             quicksort(data, start, index-1, lvl++);
