@@ -155,8 +155,10 @@ public class Quick {
         System.out.println("start: " + start + " end: " + end);
         System.out.println();
 
-        if (end - start != 1) {
+        if (!(index-1 <= start)) {
             quicksort(data, start, index-1, lvl++);
+        }
+        if (!(index+1 >= end)) {
             quicksort(data, index+1, end, lvl++);
         }
     }
