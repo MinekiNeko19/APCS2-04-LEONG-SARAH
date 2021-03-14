@@ -1,6 +1,6 @@
 public class Quick {
     //note: start/end have been renamed to lo/hi in this to match the diagram, otherwise it is the same.
-    public static int partition(int[]data ,int start, int end, int lvl){
+    public static int partition(int[]data ,int start, int end){
         if (data.length == 0) return -1;
         if (data.length == 1) return 0;
         if (start==end) return start;
@@ -131,7 +131,7 @@ public class Quick {
         return quickselect(data, k, 0, data.length-1, 0);
     }
     private static int quickselect(int[] data, int k, int start, int end, int lvl) {
-        int index = partition(data, start, end, lvl);
+        int index = partition(data, start, end);
         // System.out.println("Index: " + index);
         // System.out.println("Level: " + lvl);
         // toString(data);
@@ -145,8 +145,21 @@ public class Quick {
     }
 
     public static void quicksort(int[] data){
-        //your code.
-      }
+        quicksort(data, 0, data.length-1, 0);
+    }
+
+    private static void quicksort(int[] data, int start, int end, int lvl) {
+        int index = partition(data, start, end);
+        System.out.println("Level: " + lvl + " Index: " + index);
+        toString(data);
+        System.out.println("start: " + start + " end: " + end);
+        System.out.println();
+
+        if (end - start != 1) {
+            quicksort(data, start, index-1, lvl++);
+            quicksort(data, index+1, end, lvl++);
+        }
+    }
 
     // for testing
     private static void toString(int[] arr) {
