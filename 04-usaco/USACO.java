@@ -97,6 +97,7 @@ public class USACO {
 
             long[][] numBessies = new long[rows][cols];
             char[][] map = new char[rows][cols];
+            long ans = 0;
             
             for (int i = 0; i < rows; i++) {
                 String temp = in.next();
@@ -114,28 +115,31 @@ public class USACO {
 
             // move from start to end
             map[sy][sx]='b';
+            numBessies[sy][sx] = 1;
             for (int i = 0; i < moves; i++) { // counts steps/seconds
                 //change numBessies accordingly
                 for (int y = 0; y < rows; y++) {
                     for (int x = 0; x < cols; x++) {
-                        if (map[y][x]=='b'  && map[y][x]!='*') {
-                            numBessies[y][x] = 0;
+                        if (map[y][x]=='b') {
                             if (y-1 >= 0 && map[y-1][x]!='*') {
-                                numBessies[y-1][x] += 1;
+                                numBessies[y-1][x] += numBessies[y][x];
                             }
                             if (y+1 < rows && map[y+1][x]!='*') {
-                                numBessies[y+1][x] += 1;
+                                numBessies[y+1][x] += numBessies[y][x];
                             }
                             if (x-1 >= 0 && map[y][x-1]!='*') {
-                                numBessies[y][x-1] += 1;
+                                numBessies[y][x-1] += numBessies[y][x];
                             }
                             if (x+1 < cols && map[y][x+1]!='*'){
-                                numBessies[y][x+1] += 1;
+                                numBessies[y][x+1] += numBessies[y][x];
                             }
+                            numBessies[y][x] = 0;
                             map[y][x] = '.';
                         }
                     }
                 }
+                // System.out.println(numBessies[ey][ex]);
+                // ans += numBessies[ey][ex];
 
                 //change map accordingly
                 for (int y = 0; y < rows; y++) {
@@ -152,7 +156,8 @@ public class USACO {
                 // toString(map);
                 // System.out.println("numBessies");
                 // toString(numBessies);
-            }          
+            }
+            // return ans;
             return numBessies[ey][ex];
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
