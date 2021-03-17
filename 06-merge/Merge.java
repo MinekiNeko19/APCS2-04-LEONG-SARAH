@@ -34,18 +34,14 @@ public class Merge {
                 for (int i = lo; i <= hi; i++) {
                     System.out.println("leftstart: " + leftstart + " rightstart: " + rightstart);
                     // System.out.println("Index: " + i);
-                    if (leftstart < (hi-lo+1)/2) {
-                        left = data[leftstart];
-                    }
-                    if (rightstart <= (hi)) {
-                        right = data[rightstart];
-                    }
+                    left = data[leftstart];
+                    right = data[rightstart];
 
                     System.out.println("left val: " + left + " right val: " + right);
                     if (right < left) {
                         System.out.println("right less");
                         if (rightstart > hi) {
-                            temp[i+1] = left;
+                            temp[i] = left;
                             leftstart++;
                             i++;
                         } else {
@@ -56,7 +52,7 @@ public class Merge {
                     else if (left < right) {
                         System.out.println("left less");
                         if (leftstart >= (hi-lo+1)/2) {
-                            temp[i+1] = right;
+                            temp[i] = right;
                             rightstart++;
                             i++;
                         } else {
