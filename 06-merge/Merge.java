@@ -4,16 +4,20 @@ public class Merge {
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
-        mergesort(data, temp, 0, data.length);
+        mergesort(data, temp, 0, data.length-1);
+        // transfer to original
+        for (int i = 0; i < data.length; i++) {
+            data[i] = temp[i];
+        }
     }
 
     private static void mergesort(int[] data, int[] temp, int lo, int hi) {
         int leftstart = lo;
-        int rightstart = (hi-lo+1)/2;
+        int rightstart = (hi-lo+1)/2 + lo;
         if (hi-lo >= 1) {
             mergesort(data, temp, lo, rightstart-1);
             // System.out.println("split");
-            mergesort(data, temp, rightstart, hi-1);
+            mergesort(data, temp, rightstart, hi);
 
             // merge code
             if (hi-lo==1) { // only 2 element
@@ -27,33 +31,42 @@ public class Merge {
                 int right = 0;
                 
                 // sort the elements
-                for (int i = lo; i < hi; i++) {
-                    // System.out.println("left: " + leftstart + " right: " + rightstart);
+                for (int i = lo; i <= hi; i++) {
+                    System.out.println("leftstart: " + leftstart + " rightstart: " + rightstart);
                     // System.out.println("Index: " + i);
-                    if (leftstart != (hi-lo+1)/2) {
+                    if (leftstart < (hi-lo+1)/2) {
                         left = data[leftstart];
                     }
-                    if (rightstart != (hi)) {
+                    if (rightstart <= (hi)) {
                         right = data[rightstart];
                     }
 
-                    // System.out.println("left val: " + left + " right val: " + right);
+                    System.out.println("left val: " + left + " right val: " + right);
                     if (right < left) {
-                        temp[i] = right;
-                        rightstart++;
-                        if (i == hi-1) {
-                            temp[i++] = left;
+                        System.out.println("right less");
+                        if (rightstart > hi) {
+                            temp[i+1] = left;
+                            leftstart++;
+                            i++;
+                        } else {
+                            temp[i] = right;
+                            rightstart++;
                         }
                     }
                     else if (left < right) {
-                        temp[i] = left;
-                        leftstart++;
-                        if (i == hi-1) {
-                            temp[i++] = right;
+                        System.out.println("left less");
+                        if (leftstart >= (hi-lo+1)/2) {
+                            temp[i+1] = right;
+                            rightstart++;
+                            i++;
+                        } else {
+                            temp[i] = left;
+                            leftstart++;
                         }
                     }
                     // special case for equal
                     else {
+                        System.out.println("equal");
                         temp[i] = right;
                         i++;
                         temp[i] = left;
@@ -62,14 +75,9 @@ public class Merge {
                     }
                     // Testing
                     toString(temp);
-                    // toString(data);
+                    toString(data);
                     System.out.println();
                 }
-            }
-
-            // transfer to original
-            for (int i = 0; i < data.length; i++) {
-                data[i] = temp[i];
             }
         }
     }
