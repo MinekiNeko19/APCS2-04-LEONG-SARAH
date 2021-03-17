@@ -55,7 +55,7 @@ public class Merge {
                         rightstart++;
                     }
                 }
-                else if (left < right) {
+                else if (left <= right) {
                     System.out.println("left less");
                     if (leftstart >= (hi-lo+1)/2) {
                         temp[i] = right;
@@ -67,18 +67,17 @@ public class Merge {
                     }
                 }
                 // special case for equal
-                else if (leftstart != rightstart){
-                    System.out.println("equal");
-                    temp[i] = right;
-                    i = i + 1;
-                    temp[i] = left;
-                    rightstart++;
-                    leftstart++;
-                }
+                // else if (leftstart != rightstart){
+                //     System.out.println("equal");
+                //     temp[i] = right;
+                //     temp[i] = left;
+                //     rightstart++;
+                //     leftstart++;
+                // }
                 // Testing
-                // toString(temp);
-                // toString(data);
-                // System.out.println();
+                toString(temp);
+                toString(data);
+                System.out.println();
             }
         }
     }
