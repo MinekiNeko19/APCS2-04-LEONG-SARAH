@@ -38,10 +38,16 @@ public class Merge {
                     if (right < left) {
                         temp[i] = right;
                         rightstart++;
+                        if (i == hi-1) {
+                            temp[i++] = left;
+                        }
                     }
                     else if (left < right) {
                         temp[i] = left;
                         leftstart++;
+                        if (i == hi-1) {
+                            temp[i++] = right;
+                        }
                     }
                     toString(temp);
                     // toString(data);
