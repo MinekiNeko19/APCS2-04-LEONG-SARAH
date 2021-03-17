@@ -24,6 +24,8 @@ public class Merge {
                 temp[lo] = Math.min(data[lo], data[hi]);
                 temp[hi] = Math.max(data[lo], data[hi]);
                 // System.out.println(temp[lo] + "split" + temp[hi]);
+                data[lo] = temp[lo];
+                data[hi] = temp[hi];
             }
 
             else { // more than 2 elements
