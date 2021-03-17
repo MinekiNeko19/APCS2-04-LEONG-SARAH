@@ -4,7 +4,7 @@ public class Merge {
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
-        mergesort(data, temp, 0, data.length-1);
+        mergesort(data, temp, 3, data.length-1);
         // transfer to original
         for (int i = 0; i < data.length; i++) {
             data[i] = temp[i];
@@ -35,49 +35,20 @@ public class Merge {
         else { // more than 2 elements
             int left = 0;
             int right = 0;
+            int ind = lo;
             
             // sort the elements
             for (int i = lo; i <= hi; i++) {
-                System.out.println("leftstart: " + leftstart + " rightstart: " + rightstart);
-                // System.out.println("Index: " + i);
-                left = data[leftstart];
-                right = data[rightstart];
-
-                System.out.println("left val: " + left + " right val: " + right);
-                if (right < left) {
-                    System.out.println("right less");
-                    if (rightstart > hi) {
-                        temp[i] = left;
-                        leftstart++;
-                        i++;
+                while (leftstart < ((hi-lo+1)/2 + lo) && rightstart < hi) {
+                    left = data[leftstart];
+                    right = data[rightstart];
+                    if (left <= right) {
+                        temp[ind] = left;
                     } else {
-                        temp[i] = right;
-                        rightstart++;
+                        temp[ind] = right;
                     }
+                    ind++;
                 }
-                else if (left <= right) {
-                    System.out.println("left less");
-                    if (leftstart >= (hi-lo+1)/2) {
-                        temp[i] = right;
-                        rightstart++;
-                        i++;
-                    } else {
-                        temp[i] = left;
-                        leftstart++;
-                    }
-                }
-                // special case for equal
-                // else if (leftstart != rightstart){
-                //     System.out.println("equal");
-                //     temp[i] = right;
-                //     temp[i] = left;
-                //     rightstart++;
-                //     leftstart++;
-                // }
-                // Testing
-                toString(temp);
-                toString(data);
-                System.out.println();
             }
         }
     }
