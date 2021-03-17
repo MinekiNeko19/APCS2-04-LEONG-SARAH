@@ -52,7 +52,13 @@ public class Merge {
                         }
                     }
                     // special case for equal
-
+                    else {
+                        temp[i] = right;
+                        i++;
+                        temp[i] = left;
+                        rightstart++;
+                        leftstart++;
+                    }
                     // Testing
                     // toString(temp);
                     // toString(data);
