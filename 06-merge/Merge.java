@@ -8,25 +8,27 @@ public class Merge {
     }
 
     private static void mergesort(int[] data, int[] temp, int lo, int hi) {
+        int leftstart = lo;
+        int rightstart = (hi-lo+1)/2;
         if (hi-lo >= 1) {
-            // mergesort(data, temp, lo, leftend);
-            // mergesort(data, temp, rightstart, lo-1);
+            mergesort(data, temp, lo, rightstart-1);
+            mergesort(data, temp, rightstart, lo-1);
 
             // merge code
             if (hi-lo==1) { // only 2 element
                 temp[lo] = Math.min(data[lo], data[hi]);
                 temp[hi] = Math.max(data[lo], data[hi]);
-                System.out.println(temp[lo] + "split" + temp[hi]);
+                // System.out.println(temp[lo] + "split" + temp[hi]);
             }
 
             else { // more than 2 elements
-                int leftstart = lo;
-                int rightstart = (hi-lo+1)/2;
                 int left = 0;
                 int right = 0;
+                
+                // sort the elements
                 for (int i = lo; i < hi; i++) {
-                    System.out.println("left: " + leftstart + " right: " + rightstart);
-                    System.out.println("Index: " + i);
+                    // System.out.println("left: " + leftstart + " right: " + rightstart);
+                    // System.out.println("Index: " + i);
                     if (leftstart != (hi-lo+1)/2) {
                         left = data[leftstart];
                     }
@@ -34,7 +36,7 @@ public class Merge {
                         right = data[rightstart];
                     }
 
-                    System.out.println("left val: " + left + " right val: " + right);
+                    // System.out.println("left val: " + left + " right val: " + right);
                     if (right < left) {
                         temp[i] = right;
                         rightstart++;
@@ -49,20 +51,14 @@ public class Merge {
                             temp[i++] = right;
                         }
                     }
-                    toString(temp);
-                    // toString(data);
-                    System.out.println();
                     // special case for equal
-                }
 
-                int store = 0;
-                for (int i = 0; i < data.length; i++) {
-                    store = temp[i];
-                    temp[i] = data[i];
-                    data[i] = store;
+                    // Testing
+                    // toString(temp);
+                    // toString(data);
+                    // System.out.println();
                 }
             }
-
 
             // transfer to original
             for (int i = 0; i < data.length; i++) {
