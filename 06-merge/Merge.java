@@ -4,7 +4,7 @@ public class Merge {
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
-        mergesort(data, temp, 3, data.length-1);
+        mergesort(data, temp, 0, data.length-1);
         // transfer to original
         for (int i = 0; i < data.length; i++) {
             data[i] = temp[i];
@@ -13,7 +13,14 @@ public class Merge {
 
     private static void mergesort(int[] data, int[] temp, int lo, int hi) {
         int rightstart = (hi-lo+1)/2 + lo;
-        if (hi-lo >= 1) {
+        if (hi-lo == 1) {
+            temp[lo] = Math.min(data[lo], data[hi]);
+            temp[hi] = Math.max(data[lo], data[hi]);
+            data[lo] = temp[lo];
+            data[hi] = temp[hi];
+        }
+
+        if (hi-lo > 1) {
             mergesort(data, temp, lo, rightstart-1);
             // System.out.println("split");
             mergesort(data, temp, rightstart, hi);
@@ -39,13 +46,15 @@ public class Merge {
             
             // sort the elements
             for (int i = lo; i <= hi; i++) {
-                while (leftstart < ((hi-lo+1)/2 + lo) && rightstart < hi) {
+                while (leftstart < ((hi-lo+1)/2 + lo) && rightstart <= hi) {
                     left = data[leftstart];
                     right = data[rightstart];
                     if (left <= right) {
                         temp[ind] = left;
+                        leftstart++;
                     } else {
                         temp[ind] = right;
+                        rightstart++;
                     }
                     ind++;
                 }
