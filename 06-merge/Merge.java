@@ -4,7 +4,7 @@ public class Merge {
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
-        mergesort(data, temp, 0, data.length-1);
+        mergesort(data, temp, 0, data.length);
     }
 
     private static void mergesort(int[] data, int[] temp, int lo, int hi) {
@@ -12,7 +12,8 @@ public class Merge {
         int rightstart = (hi-lo+1)/2;
         if (hi-lo >= 1) {
             mergesort(data, temp, lo, rightstart-1);
-            mergesort(data, temp, rightstart, lo-1);
+            // System.out.println("split");
+            mergesort(data, temp, rightstart, hi-1);
 
             // merge code
             if (hi-lo==1) { // only 2 element
@@ -60,9 +61,9 @@ public class Merge {
                         leftstart++;
                     }
                     // Testing
-                    // toString(temp);
+                    toString(temp);
                     // toString(data);
-                    // System.out.println();
+                    System.out.println();
                 }
             }
 
