@@ -24,8 +24,9 @@ public class Merge {
                 int rightstart = (hi-lo+1)/2;
                 int left = 0;
                 int right = 0;
-                System.out.println(rightstart + " left: " + leftstart);
-                for (int i = lo; i <= hi; i++) {
+                for (int i = lo; i < hi; i++) {
+                    System.out.println("left: " + leftstart + " right: " + rightstart);
+                    System.out.println("Index: " + i);
                     if (leftstart != (hi-lo+1)/2) {
                         left = data[leftstart];
                     }
@@ -33,16 +34,21 @@ public class Merge {
                         right = data[rightstart];
                     }
 
-                    if (right > left) {
+                    System.out.println("left val: " + left + " right val: " + right);
+                    if (right < left) {
                         temp[i] = right;
                         rightstart++;
                     }
-                    else if (left > right) {
+                    else if (left < right) {
                         temp[i] = left;
                         leftstart++;
                     }
+                    toString(temp);
+                    // toString(data);
+                    System.out.println();
                     // special case for equal
                 }
+
                 int store = 0;
                 for (int i = 0; i < data.length; i++) {
                     store = temp[i];
@@ -62,5 +68,6 @@ public class Merge {
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + " ");
         }
+        System.out.println();
     }
 }
