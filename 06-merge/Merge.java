@@ -25,6 +25,7 @@ public class Merge {
             // System.out.println("split");
             mergesort(data, temp, rightstart, hi);
             merge(data, temp, lo, hi);
+            // mergeArrays(data, temp, lo, hi);
         }
     }
 
@@ -59,6 +60,47 @@ public class Merge {
                     ind++;
                 }
             }
+        }
+    }
+
+    private static void mergeArrays(int[] data, int[] temp, int lo, int hi) {
+        int split = (hi+lo-1)/2;
+        int[] left = new int[split-lo+1];
+        int[] right = new int[hi-split];
+
+        for (int i = 0; i < left.length; i++) {
+            left[i] = data[lo+i];
+        }
+        for (int i = 0; i < right.length; i++) {
+            right[i] = data[split+1+i];
+        }
+
+        int lcount = 0;
+        int rcount = 0;
+        int tcount = lo;
+
+        while ((lcount < left.length && rcount < right.length)) {
+            if (left[lcount] <= right[rcount]) {
+                temp[tcount] = left[lcount];
+                lcount++;
+            }
+            else {
+                temp[tcount] = right[rcount];
+                rcount++;
+            }
+            tcount++;
+        }
+
+        while (lcount < left.length) {
+            temp[tcount] = left[lcount];
+            lcount++;
+            tcount++;
+        }
+
+        while (rcount < right.length) {
+            temp[tcount] = right[rcount];
+            rcount++;
+            tcount++;
         }
     }
 
