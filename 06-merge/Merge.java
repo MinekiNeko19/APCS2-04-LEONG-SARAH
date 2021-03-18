@@ -12,7 +12,6 @@ public class Merge {
     }
 
     private static void mergesort(int[] data, int[] temp, int lo, int hi) {
-        int rightstart = (hi-lo+1)/2 + lo;
         if (hi-lo == 1) {
             temp[lo] = Math.min(data[lo], data[hi]);
             temp[hi] = Math.max(data[lo], data[hi]);
@@ -21,8 +20,8 @@ public class Merge {
         }
 
         if (hi-lo > 1) {
+            int rightstart = (hi-lo+1)/2 + lo;
             mergesort(data, temp, lo, rightstart-1);
-            // System.out.println("split");
             mergesort(data, temp, rightstart, hi);
             merge(data, temp, lo, hi);
             // mergeArrays(data, temp, lo, hi);
@@ -32,35 +31,53 @@ public class Merge {
     private static void merge(int[] data, int[] temp, int lo, int hi) {
         int leftstart = lo;
         int rightstart = (hi-lo+1)/2 + lo;
-        if (hi-lo==1) { // only 2 element
-            temp[lo] = Math.min(data[lo], data[hi]);
-            temp[hi] = Math.max(data[lo], data[hi]);
-            // System.out.println(temp[lo] + "split" + temp[hi]);
-            data[lo] = temp[lo];
-            data[hi] = temp[hi];
-        }
-
-        else { // more than 2 elements
+        
+        // more than 2 elements
             int left = 0;
             int right = 0;
-            int ind = lo;
+
+            //separations?
+            // System.out.print("left side: ");
+            // for (int i = leftstart; i < ((hi-lo+1)/2 + lo); i++) {
+            //     System.out.print(data[i] + " ");
+            // }
+            // System.out.print("\nright side: ");
+            // for (int i = rightstart; i <= hi; i++) {
+            //     System.out.print(data[i] + " ");
+            // }
+            // System.out.println();
             
             // sort the elements
             for (int i = lo; i <= hi; i++) {
-                while (leftstart < ((hi-lo+1)/2 + lo) && rightstart <= hi) {
+                if (leftstart < ((hi-lo+1)/2 + lo) && rightstart <= hi) {
                     left = data[leftstart];
                     right = data[rightstart];
                     if (left <= right) {
-                        temp[ind] = left;
+                        temp[i] = left;
                         leftstart++;
                     } else {
-                        temp[ind] = right;
+                        temp[i] = right;
                         rightstart++;
                     }
-                    ind++;
+                }
+                else if (leftstart < ((hi-lo+1)/2 + lo)) {
+                    left = data[leftstart];
+                    temp[i] = left;
+                    leftstart++;
+                    
+                }
+                else {
+                    right = data[rightstart];
+                    temp[i] = right;
+                    rightstart++;
                 }
             }
+        
+        for (int i = 0; i < data.length; i++) {
+            data[i] = temp[i];
         }
+        // toString(data);
+        // System.out.println();
     }
 
     private static void mergeArrays(int[] data, int[] temp, int lo, int hi) {
