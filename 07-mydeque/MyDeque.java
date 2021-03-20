@@ -3,10 +3,20 @@ public class MyDeque<E> {
     private int size, start, end;
 
     public MyDeque(){
-
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[10];
+        data = d;
+        size = 0;
+        start = 0;
+        end = 0;
     }
     public MyDeque(int initialCapacity){
-
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[10];
+        data = d;
+        size = 0;
+        start = 0;
+        end = 0;
     }
     public int size(){
         return 0;
