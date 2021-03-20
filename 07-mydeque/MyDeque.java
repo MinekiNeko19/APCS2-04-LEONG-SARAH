@@ -26,30 +26,30 @@ public class MyDeque<E> {
     public String toString(){
         String s = "{";
 
-        //to look into the whole array (testing)
-        // for (int i = 0; i < data.length; i ++) {
-        //     s+=data[i];
-        //     if (i < data.length-1) {
-        //         s+= ", ";
+        ////to look into the whole array (testing)
+        for (int i = 0; i < data.length; i ++) {
+            s+=data[i];
+            if (i < data.length-1) {
+                s+= ", ";
+            }
+        }
+
+        // if (start < end) {
+        //     for (int i = start; i <= end; i++) {
+        //         s += data[i];
+        //         if (i < end-1) {
+        //             s += ", ";
+        //         }
         //     }
         // }
-
-        if (start < end) {
-            for (int i = start; i <= end; i++) {
-                s += data[i];
-                if (i < end-1) {
-                    s += ", ";
-                }
-            }
-        }
-        else {
-            for (int i = start; i != end+1; i++) {
-                s += data[i];
-                if (i != end) {
-                    s += ", ";
-                }
-            }
-        }
+        // else {
+        //     for (int i = start; i != end+1; i++) {
+        //         s += data[i];
+        //         if (i != end) {
+        //             s += ", ";
+        //         }
+        //     }
+        // }
 
         return s + "}";
     }
@@ -58,7 +58,9 @@ public class MyDeque<E> {
 
         // if data capacity reached
         size++;
-        if (size==data.length) {
+        if (size>data.length) {
+            start = 0;
+            end = data.length-1;
             @SuppressWarnings("unchecked")
             E[] temp = (E[]) new Object[data.length*2+1];
             for (int i = 0; i < data.length; i++) {
@@ -101,5 +103,11 @@ public class MyDeque<E> {
     }
     public E getLast(){ // throws NoSuchElementException when empty
         return null;
+    }
+
+    // Testing method to delete later
+    public void startend() {
+        System.out.println("Start: " + start);
+        System.out.println("End: " + end);
     }
 }
