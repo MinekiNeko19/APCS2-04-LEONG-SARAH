@@ -117,18 +117,29 @@ public class MyDeque<E> {
     }
 
     public E removeFirst() { // throws NoSuchElementException when empty
-        return null;
+        if (size==0) throw new NoSuchElementException();
+
+        start++;
+        size--;
+        E store = data[start-1];
+        if (start == data.length) {
+            start = 0;
+        }
+        return store;
     }
 
     public E removeLast() { // throws NoSuchElementException when empty
+        if (size==0) throw new NoSuchElementException();
         return null;
     }
 
     public E getFirst() { // throws NoSuchElementException when empty
+        if (size==0) throw new NoSuchElementException();
         return null;
     }
 
     public E getLast() { // throws NoSuchElementException when empty
+        if (size==0) throw new NoSuchElementException();
         return null;
     }
 
