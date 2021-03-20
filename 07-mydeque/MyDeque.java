@@ -142,21 +142,21 @@ public class MyDeque<E> {
 
     public E getFirst() { // throws NoSuchElementException when empty
         if (size==0) throw new NoSuchElementException();
-        return null;
+        return data[start];
     }
 
     public E getLast() { // throws NoSuchElementException when empty
         if (size==0) throw new NoSuchElementException();
-        return null;
+        return data[end];
     }
 
     // Testing method to delete later
-    public void startend() {
+    private void startend() {
         System.out.println("Start: " + start);
         System.out.println("End: " + end);
     }
 
-    public void dataGuts() { // to look into the whole array (testing)
+    private void dataGuts() { // to look into the whole array (testing)
         String s = "{";
         for (int i = 0; i < data.length; i++) {
             s += data[i];
