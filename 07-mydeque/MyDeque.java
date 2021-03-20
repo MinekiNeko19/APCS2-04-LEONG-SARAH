@@ -48,8 +48,8 @@ public class MyDeque<E> {
         if (element == null)
             throw new NullPointerException();
 
-        // if data capacity reached
         size++;
+        // if data capacity reached
         int j = start;
         if (size > data.length) {
             start = 0;
@@ -81,12 +81,38 @@ public class MyDeque<E> {
     }
 
     public void addLast(E element) { // throws NullPointerException if element is null
-        if (element == null)
-            throw new NullPointerException();
+        if (element == null) throw new NullPointerException();
 
+        size++;
         // if data capacity reached
+        int j = start;
+        if (size > data.length) {
+            start = 0;
+            end = data.length - 1;
+            @SuppressWarnings("unchecked")
+            E[] temp = (E[]) new Object[data.length * 2 + 1];
+            for (int i = 0; i < size-1; i++) {
+                if (j >= data.length) {
+                    j = 0;
+                }
+                temp[i] = data[j];
+                j++;
+            }
+            data = temp;
+        }
 
         // add the value to the end
+        end++;
+        if (end == data.length) {
+            end = 0;
+        }
+        data[end] = element;
+        // special cases in the beginning
+        if (size == 1) {
+            start = end;
+        } else if (size == 2) {
+            start = end - 1;
+        }
 
     }
 
