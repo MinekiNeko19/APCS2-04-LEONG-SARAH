@@ -14,6 +14,7 @@ public class MyDeque<E> {
     }
 
     public MyDeque(int initialCapacity) {
+        if (initialCapacity < 0) throw new NegativeArraySizeException();
         @SuppressWarnings("unchecked")
         E[] d = (E[]) new Object[10];
         data = d;
