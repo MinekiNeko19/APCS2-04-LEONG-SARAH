@@ -26,30 +26,29 @@ public class MyDeque<E> {
     public String toString(){
         String s = "{";
 
-        ////to look into the whole array (testing)
-        for (int i = 0; i < data.length; i ++) {
-            s+=data[i];
-            if (i < data.length-1) {
-                s+= ", ";
+        if (start < end) {
+            for (int i = start; i <= end; i++) {
+                s += data[i];
+                if (i < end-1) {
+                    s += ", ";
+                }
             }
         }
-
-        // if (start < end) {
-        //     for (int i = start; i <= end; i++) {
-        //         s += data[i];
-        //         if (i < end-1) {
-        //             s += ", ";
-        //         }
-        //     }
-        // }
-        // else {
-        //     for (int i = start; i != end+1; i++) {
-        //         s += data[i];
-        //         if (i != end) {
-        //             s += ", ";
-        //         }
-        //     }
-        // }
+        else {
+            s += data[start];
+            if (size != 1) {
+                s += ", ";
+            }
+            for (int i = start+1; i != end+1; i++) {
+                s += data[i];
+                if (i != end) {
+                    s += ", ";
+                }
+                if (i==data.length-1) {
+                    i=-1;
+                }
+            }
+        }
 
         return s + "}";
     }
@@ -109,5 +108,15 @@ public class MyDeque<E> {
     public void startend() {
         System.out.println("Start: " + start);
         System.out.println("End: " + end);
+    }
+    public void dataGuts() { //to look into the whole array (testing)
+        String s = "{";
+        for (int i = 0; i < data.length; i ++) {
+            s+=data[i];
+            if (i < data.length-1) {
+                s+= ", ";
+            }
+        }
+        System.out.println(s+"}");
     }
 }
