@@ -45,6 +45,7 @@ public class Calculator {
             }
             // System.out.println(stack.toString());
         }
+        line.close();
         return stack.getLast();
     }
 }
