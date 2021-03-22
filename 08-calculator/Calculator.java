@@ -46,6 +46,7 @@ public class Calculator {
             // System.out.println(stack.toString());
         }
         line.close();
+        if (stack.size() != 1) throw new IllegalArgumentException();
         return stack.getLast();
     }
 }
