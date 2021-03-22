@@ -14,7 +14,9 @@ public class Calculator {
                 stack.addFirst(0.0); // place holder
             }
             else if (current.equals("+")) {
-                stack.addFirst(0.0); // place holder
+                Double a = stack.removeFirst();
+                Double b = stack.removeFirst();
+                stack.addFirst(a+b);
             }
             else if (current.equals("-")) {
                 stack.addFirst(0.0); // place holder
