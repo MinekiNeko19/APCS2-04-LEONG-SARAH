@@ -6,12 +6,16 @@ public class Calculator {
         ArrayDeque<Double> stack = new ArrayDeque<Double>();
         while (line.hasNext()) {
             String current = line.next();
-            System.out.println(current);
+            // System.out.println(current);
             if (current.equals("*")) {
-                stack.addFirst(0.0); // place holder
+                Double a = stack.removeFirst();
+                Double b = stack.removeFirst();
+                stack.addFirst(a*b);
             }
             else if (current.equals("/")) {
-                stack.addFirst(0.0); // place holder
+                Double a = stack.removeFirst();
+                Double b = stack.removeFirst();
+                stack.addFirst(b/a);
             }
             else if (current.equals("+")) {
                 Double a = stack.removeFirst();
@@ -19,12 +23,14 @@ public class Calculator {
                 stack.addFirst(a+b);
             }
             else if (current.equals("-")) {
-                stack.addFirst(0.0); // place holder
+                Double a = stack.removeFirst();
+                Double b = stack.removeFirst();
+                stack.addFirst(b-a);
             } else {
                 stack.addFirst(Double.parseDouble(current));
             }
+            System.out.println(stack.toString());
         }
-        System.out.println(stack.toString());
         return stack.getLast();
     }
 }
