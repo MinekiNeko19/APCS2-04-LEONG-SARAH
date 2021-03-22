@@ -2,10 +2,27 @@ import java.util.*;
 
 public class Calculator {
     public static double eval(String s){
-        StringTokenizer line = new StringTokenizer(s);
-        while (line.hasMoreTokens()) {
-            System.out.println(line.nextToken());
+        Scanner line = new Scanner(s);
+        ArrayDeque<Double> stack = new ArrayDeque<Double>();
+        while (line.hasNext()) {
+            String current = line.next();
+            System.out.println(current);
+            if (current.equals("*")) {
+                stack.addFirst(0.0); // place holder
+            }
+            else if (current.equals("/")) {
+                stack.addFirst(0.0); // place holder
+            }
+            else if (current.equals("+")) {
+                stack.addFirst(0.0); // place holder
+            }
+            else if (current.equals("-")) {
+                stack.addFirst(0.0); // place holder
+            } else {
+                stack.addFirst(Double.parseDouble(current));
+            }
         }
-        return 0;
+        System.out.println(stack.toString());
+        return stack.getLast();
     }
 }
