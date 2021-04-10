@@ -51,7 +51,7 @@ public class BurnTrees{
   public void tick(){
     ticks++;
     for (int i = 0; i < map.length; i++) {
-      for (int j = 0; j < Math.min(map[i].length, ticks); j++) {
+      for (int j = 0; j < Math.min(map[i].length, (ticks+1)); j++) {
           if (map[i][j]==FIRE) {
             if (i > 0 && map[i-1][j]==TREE) { // checks up
               map[i-1][j]=FIRE;
