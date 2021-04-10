@@ -65,7 +65,7 @@ public class BurnTrees{
               map[i][j-1]=EMBER;
               fireCount++;
             }
-            if (i < map.length-1 && map[i][j+1]==TREE) { // checks right
+            if (j < map.length-1 && map[i][j+1]==TREE) { // checks right
               map[i][j+1]=EMBER;
               fireCount++;
             }
