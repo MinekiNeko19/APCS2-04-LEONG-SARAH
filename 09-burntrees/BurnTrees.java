@@ -54,15 +54,15 @@ public class BurnTrees{
       for (int j = 0; j < map[i].length; j++) {
           if (map[i][j]==FIRE) {
             if (i > 0 && map[i-1][j]==TREE) { // checks up
-              map[i-1][j]=EMBER;
+              map[i-1][j]=FIRE;
               fireCount++;
             }
-            if (i < map.length-1 && map[i+1][j]==TREE) { // checks 
+            if (i < map.length-1 && map[i+1][j]==TREE) { // checks down
               map[i+1][j]=EMBER;
               fireCount++;
             }
             if (j > 0 && map[i][j-1]==TREE) { // checks left
-              map[i][j-1]=EMBER;
+              map[i][j-1]=FIRE;
               fireCount++;
             }
             if (j < map.length-1 && map[i][j+1]==TREE) { // checks right
@@ -187,8 +187,8 @@ public class BurnTrees{
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
 
-    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
-    //System.out.println(b.outputAll());//print all screens and the final answer
+    // System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+    // System.out.println(b.outputAll());//print all screens and the final answer
   }
 
 
