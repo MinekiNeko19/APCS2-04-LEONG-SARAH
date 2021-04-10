@@ -40,7 +40,7 @@ public class BurnTrees{
    *@return true if any fires are still burning, false otherwise
    */
   public boolean done(){
-    return fireCount == 0;
+    return fireCount <= 0;
   }
 
 
@@ -54,18 +54,32 @@ public class BurnTrees{
       for (int j = 0; j < map[i].length; j++) {
           if (map[i][j]==FIRE) {
             if (i > 0 && map[i-1][j]==TREE) { // checks up
-
+              map[i-1][j]=EMBER;
+              fireCount++;
             }
-            if (i < map.length-1 && map[i+1][j]==TREE) { // checks down
-
+            if (i < map.length-1 && map[i+1][j]==TREE) { // checks 
+              map[i+1][j]=EMBER;
+              fireCount++;
             }
             if (j > 0 && map[i][j-1]==TREE) { // checks left
-
+              map[i][j-1]=EMBER;
+              fireCount++;
             }
             if (i < map.length-1 && map[i][j+1]==TREE) { // checks right
-
+              map[i][j+1]=EMBER;
+              fireCount++;
             }
+            map[i][j] = ASH;
+            fireCount--;
           }
+      }
+    }
+
+    for (int i = 0; i < map.length; i++) {
+      for (int j = 0; j < map[i].length; j++) {
+        if (map[i][j]==EMBER) {
+          map[i][j] = FIRE;
+        }
       }
     }
   }
