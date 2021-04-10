@@ -1,7 +1,10 @@
 import java.util.*;
+
 public class BurnTrees{
   private int[][]map;
   private int ticks;
+  private int fireCount; // keeps track of the number of fires active
+  private static int EMBER = 5; // notates will be set on fire next
   private static int TREE = 2;
   private static int FIRE = 1;
   private static int ASH = 3;
@@ -26,8 +29,10 @@ public class BurnTrees{
     map = new int[height][width];
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
-        if(Math.random() < density)
+        if(Math.random() < density) {
            map[r][c]=2;
+           if (c==0) fireCount++;
+        }
     start();//set the left column on fire.
   }
 
@@ -35,8 +40,7 @@ public class BurnTrees{
    *@return true if any fires are still burning, false otherwise
    */
   public boolean done(){
-    //YOU MUST IMPLEMENT THIS
-    return true;
+    return fireCount == 0;
   }
 
 
@@ -46,7 +50,24 @@ public class BurnTrees{
    */
   public void tick(){
     ticks++;
-    //YOU MUST IMPLEMENT THIS
+    for (int i = 0; i < map.length; i++) {
+      for (int j = 0; j < map[i].length; j++) {
+          if (map[i][j]==FIRE) {
+            if (i > 0 && map[i-1][j]==TREE) { // checks up
+
+            }
+            if (i < map.length-1 && map[i+1][j]==TREE) { // checks down
+
+            }
+            if (j > 0 && map[i][j-1]==TREE) { // checks left
+
+            }
+            if (i < map.length-1 && map[i][j+1]==TREE) { // checks right
+
+            }
+          }
+      }
+    }
   }
 
   /*
