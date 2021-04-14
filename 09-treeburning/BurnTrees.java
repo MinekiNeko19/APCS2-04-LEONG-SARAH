@@ -3,8 +3,10 @@ import java.util.*;
 public class BurnTrees{
   private int[][]map;
   private int ticks;
-  private int fireCount; // keeps track of the number of fires active
-  private static int EMBER = 5; // notates will be set on fire next
+  // private int fireCount; // keeps track of the number of fires active for loop
+  // private static int EMBER = 5; // notates will be set on fire next for loop
+  private Queue<Integer> FrontierRow;
+  private Queue<Integer> FrontierCol;
   private static int TREE = 2;
   private static int FIRE = 1;
   private static int ASH = 3;
@@ -31,7 +33,10 @@ public class BurnTrees{
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density) {
            map[r][c]=2;
-           if (c==0) fireCount++;
+           FrontierRow.add(r);
+           FrontierCol.add(c);
+          //  if (c==0) fireCount++;
+
         }
     start();//set the left column on fire.
   }
@@ -40,7 +45,8 @@ public class BurnTrees{
    *@return true if any fires are still burning, false otherwise
    */
   public boolean done(){
-    return fireCount <= 0;
+    // return fireCount <= 0;
+    return FrontierRow.size() <= 0;
   }
 
 
@@ -50,41 +56,36 @@ public class BurnTrees{
    */
   public void tick(){
     ticks++;
-    for (int i = 0; i < map.length; i++) {
-      for (int j = 0; j < Math.min(map[i].length, (ticks+1)); j++) {
-          if (map[i][j]==FIRE) {
-            if (i > 0 && map[i-1][j]==TREE) { // checks up
-              map[i-1][j]=FIRE;
-              fireCount++;
-            }
-            if (i < map.length-1 && map[i+1][j]==TREE) { // checks down
-              map[i+1][j]=EMBER;
-              fireCount++;
-            }
-            if (j > 0 && map[i][j-1]==TREE) { // checks left
-              map[i][j-1]=FIRE;
-              fireCount++;
-            }
-            if (j < map[i].length-1 && map[i][j+1]==TREE) { // checks right
-              map[i][j+1]=EMBER;
-              fireCount++;
-            }
-            map[i][j] = ASH;
-            fireCount--;
-          }    
-          if (map[i][j]==EMBER) {
-            map[i][j] = FIRE;
-          }
-      }
-    }
-
+    // for loop version
     // for (int i = 0; i < map.length; i++) {
-    //   for (int j = 0; j < map[i].length; j++) {
-    //     if (map[i][j]==EMBER) {
-    //       map[i][j] = FIRE;
-    //     }
+    //   for (int j = 0; j < Math.min(map[i].length, (ticks+1)); j++) {
+    //       if (map[i][j]==FIRE) {
+    //         if (i > 0 && map[i-1][j]==TREE) { // checks up
+    //           map[i-1][j]=FIRE;
+    //           fireCount++;
+    //         }
+    //         if (i < map.length-1 && map[i+1][j]==TREE) { // checks down
+    //           map[i+1][j]=EMBER;
+    //           fireCount++;
+    //         }
+    //         if (j > 0 && map[i][j-1]==TREE) { // checks left
+    //           map[i][j-1]=FIRE;
+    //           fireCount++;
+    //         }
+    //         if (j < map[i].length-1 && map[i][j+1]==TREE) { // checks right
+    //           map[i][j+1]=EMBER;
+    //           fireCount++;
+    //         }
+    //         map[i][j] = ASH;
+    //         fireCount--;
+    //       }    
+    //       if (map[i][j]==EMBER) {
+    //         map[i][j] = FIRE;
+    //       }
     //   }
     // }
+    
+    
   }
 
   /*
