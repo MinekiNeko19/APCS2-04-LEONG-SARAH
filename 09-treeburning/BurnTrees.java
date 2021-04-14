@@ -35,8 +35,10 @@ public class BurnTrees {
       for (int c = 0; c < map[r].length; c++)
         if (Math.random() < density) {
           map[r][c] = 2;
-          FrontierRow.add(r);
-          FrontierCol.add(c);
+          if (c==0) {
+            FrontierRow.add(r);
+            FrontierCol.add(c);
+          }
           // if (c==0) fireCount++;
 
         }
@@ -90,33 +92,31 @@ public class BurnTrees {
     // }
     // using queues
     int len = FrontierCol.size();
-    System.out.println(len);
     for (int i = 0; i < len; i++) {
       int r = FrontierRow.remove();
       int c = FrontierCol.remove();
-      if (map[r][c] == FIRE) {
-        if (r > 0 && map[r - 1][c] == TREE) { // checks up
-          map[r - 1][c] = FIRE;
-          FrontierRow.add(r-1);
-          FrontierCol.add(c);
-        }
-        if (r < map.length - 1 && map[r + 1][c] == TREE) { // checks down
-          map[r + 1][c] = FIRE;
-          FrontierRow.add(r+1);
-          FrontierCol.add(c);
-        }
-        if (c > 0 && map[r][c - 1] == TREE) { // checks left
-          map[r][c - 1] = FIRE;
-          FrontierRow.add(r);
-          FrontierCol.add(c-1);
-        }
-        if (c < map[r].length - 1 && map[r][c + 1] == TREE) { // checks right
-          map[r][c + 1] = FIRE;
-          FrontierRow.add(r);
-          FrontierCol.add(c+1);
-        }
-        map[r][c] = ASH;
+      if (r > 0 && map[r - 1][c] == TREE) { // checks up
+        map[r - 1][c] = FIRE;
+        FrontierRow.add(r-1);
+        FrontierCol.add(c);
       }
+      if (r < map.length - 1 && map[r + 1][c] == TREE) { // checks down
+        map[r + 1][c] = FIRE;
+        FrontierRow.add(r+1);
+        FrontierCol.add(c);
+      }
+      if (c > 0 && map[r][c - 1] == TREE) { // checks left
+        map[r][c - 1] = FIRE;
+        FrontierRow.add(r);
+        FrontierCol.add(c-1);
+      }
+      if (c < map[r].length - 1 && map[r][c + 1] == TREE) { // checks right
+        map[r][c + 1] = FIRE;
+        FrontierRow.add(r);
+        FrontierCol.add(c+1);
+      }
+      map[r][c] = ASH;
+
     }
   }
 
