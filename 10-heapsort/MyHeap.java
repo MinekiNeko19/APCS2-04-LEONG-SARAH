@@ -4,18 +4,21 @@ public class MyHeap {
         if (index <= size/2) {
             int leftInd = index*2 + 1;
             int rightInd = index*2 + 2;
-            pushDown(data, size/2, leftInd);
-            pushDown(data, size/2, rightInd);
-            if (data[leftInd] > data[index]) {
+            // System.out.println("Left " + data[leftInd]);
+            // System.out.println("right " + data[rightInd]);
+            // System.out.println("pivot " + data[index]);
+            if (data[leftInd] > data[index] && data[leftInd] > data[rightInd]) {
                 int temp = data[leftInd];
                 data[leftInd] = data[index];
                 data[index] = temp;
             }
-            if (data[rightInd] > data[index]) {
+            else if (data[rightInd] > data[index]) {
                 int temp = data[rightInd];
                 data[rightInd] = data[index];
                 data[index] = temp;
             }
+            pushDown(data, size/2, leftInd);
+            pushDown(data, size/2, rightInd);
         }
     }  
     private static void buildHeap(int[] data) {
@@ -40,10 +43,14 @@ public class MyHeap {
     public static void main(String[] args) {
         // comment out later this is for private testing
         int[] a = new int[]{1,23,4,7,10}; // buildHeap order: 23, 10, 4, 7, 1
-        int[] b = new int[]{1,1,1,1,1,1};
+        int[] b = new int[]{2,19,100,3,25,1,17,19,36};
 
         toString(a); //toString works as intended
         buildHeap(a);
         toString(a);
+
+        toString(b);
+        buildHeap(b);
+        toString(b);
     }
 }
