@@ -29,7 +29,9 @@ public class MyHeap {
         }
     }  
     private static void buildHeap(int[] data) {
-        pushDown(data, data.length, 0);
+        for (int i = 0; i < data.length/2; i++) {
+            pushDown(data, data.length, i);
+        }
     }
 
     private static void remove(int[] data, int index) {
@@ -50,16 +52,17 @@ public class MyHeap {
     public static void main(String[] args) {
         // comment out later this is for private testing
         int[] a = new int[]{1,23,4,7,10}; // buildHeap order: 23, 10, 4, 7, 1
-        // int[] b = new int[]{2,19,100,3,25,1,17,7,36}; // 100, 19, 36, 17, 3, 25, 1, 2, 7
+        int[] b = new int[]{2,19,100,3,25,1,17,7,36}; // 100, 19, 36, 17, 3, 25, 1, 2, 7
         int[] c = new int[]{1,40,22,10,3};
         int[] d = new int[]{1,20,50,15,9,40,30,2,3,5,6};
+        int[] e = new int[]{10,20,50,15,9,40,30,2,3,5,6};
 
         // toString(a); //toString works as intended
         // buildHeap(a);
         // toString(a);
 
-        toString(d);
-        buildHeap(d);
-        toString(d);
+        toString(b);
+        buildHeap(b);
+        toString(b);
     }
 }
