@@ -16,21 +16,23 @@ public class MyHeap {
                 int temp = data[rightInd];
                 data[rightInd] = data[index];
                 data[index] = temp;
-                toString(data);
+                // toString(data);
                 pushDown(data, rightsize, rightInd);
             }
             if (leftInd < data.length && data[leftInd] > data[index] && data[leftInd] > data[rightInd]) {
                 int temp = data[leftInd];
                 data[leftInd] = data[index];
                 data[index] = temp;
-                toString(data);
+                // toString(data);
                 pushDown(data, leftsize, leftInd);
             }
         }
     }  
     private static void buildHeap(int[] data) {
-        for (int i = 0; i < data.length/2; i++) {
-            pushDown(data, data.length, i);
+        for (int j = 0; j < 2; j++) {
+            for (int i = 0; i < data.length; i++) {
+                pushDown(data, data.length, i);
+            }
         }
     }
 
