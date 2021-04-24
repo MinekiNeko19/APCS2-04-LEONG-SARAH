@@ -11,14 +11,14 @@ public class MyHeap {
                     data[rightInd] = data[index];
                     data[index] = temp;
 
-                    pushDown(data, size/2, rightInd);
+                    pushDown(data, size, rightInd);
                 }
                 if (data[leftInd] > data[index] && data[rightInd] < data[leftInd]) {
                     int temp = data[leftInd];
                     data[leftInd] = data[index];
                     data[index] = temp;
 
-                    pushDown(data, size/2, leftInd);
+                    pushDown(data, size-2, leftInd);
                 }
             }
             if (data[leftInd] > data[index]) {
@@ -27,37 +27,6 @@ public class MyHeap {
                 data[index] = temp;
             }
         }
-
-        // if (size > 1) {
-        //     int leftsize = size/2;
-        //     int rightsize = size/2;
-        //     if (size % 2 == 1) leftsize=leftsize+1;
-
-        //     int leftInd = index*2+1;
-        //     int rightInd = index*2 + 2;
-        //     // System.out.println("right " + data[rightInd]);
-        //     // System.out.println("left " + data[leftInd]);
-        
-
-        //     if (rightInd < data.length && data[rightInd] > data[index] && data[rightInd] > data[leftInd]) {
-        //         int temp = data[rightInd];
-        //         data[rightInd] = data[index];
-        //         data[index] = temp;
-        //         // toString(data);
-        //         pushDown(data, rightsize, rightInd);
-        //         // pushDown(data, leftsize, leftInd);
-        //     }
-        //     if (leftInd < data.length && data[leftInd] > data[index] && data[leftInd] > data[rightInd]) {
-        //         int temp = data[leftInd];
-        //         data[leftInd] = data[index];
-        //         data[index] = temp;
-        //         // toString(data);
-        //         pushDown(data, leftsize, leftInd);
-        //         // pushDown(data, rightsize, rightInd);
-        //     }
-        //     // pushDown(data, leftsize, leftInd);
-        //     // pushDown(data, rightsize, rightInd);
-        // }
     }  
     private static void buildHeap(int[] data) {
         for (int i = data.length-1; i >= 0; i--) {
@@ -69,11 +38,7 @@ public class MyHeap {
         int temp = data[index];
         data[index] = data[0];
         data[0] = temp;
-
-        // System.out.println("temp " + temp);
-        // System.out.println("index " + data[index]);
-        // System.out.println("0 " + data[0]);
-        pushDown(data, index-1, 0);
+        pushDown(data, index, 0);
     }
 
     public static void heapsort(int[] data) {
