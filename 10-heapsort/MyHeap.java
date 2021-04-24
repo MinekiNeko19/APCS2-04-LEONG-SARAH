@@ -18,7 +18,7 @@ public class MyHeap {
                     data[leftInd] = data[index];
                     data[index] = temp;
 
-                    pushDown(data, size-2, leftInd);
+                    pushDown(data, size, leftInd);
                 }
             }
             if (data[leftInd] > data[index]) {
