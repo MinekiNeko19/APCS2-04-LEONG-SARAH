@@ -2,7 +2,7 @@ ArrayList<Cow> particles;
 void setup() {
   size(1000, 800);
   particles = new ArrayList<Cow>();
-  for (int i = 0; i < 5; i++)
+  for (int i = 0; i < 10; i++)
     particles.add(new Cow());
 }
 

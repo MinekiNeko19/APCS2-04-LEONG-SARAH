@@ -2,7 +2,6 @@ public class Cow {
   float x, y, dx, dy, radius;
   color c;
   boolean colliding, selected;
-  int id;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -13,7 +12,6 @@ public class Cow {
     colliding = false;
     selected = false;
     c = color(random(255),random(255),random(255));
-    id = (int)(Math.random()*1000);
 
   }
   Cow() {
@@ -34,7 +32,7 @@ public class Cow {
     stroke(0);
     collide(particles);
     if (colliding) {
-      fill(color(255,0,0));
+      fill(color(255,0,0,50));
     } else {
       fill(c);
     }
@@ -64,14 +62,10 @@ public class Cow {
   void collide(ArrayList<Cow>others) {
     colliding = false;
     for (Cow w : others) {
-      if (selected) {
-        println("Base: " + id + "Compared to: " + w.id);
-      }
       if (this!=w) {
         if (dist(w.x,w.y,x,y) < radius + w.radius) {
           w.colliding = true;
           colliding = true;
-          if (selected) println(true);
         }
       }
     }
