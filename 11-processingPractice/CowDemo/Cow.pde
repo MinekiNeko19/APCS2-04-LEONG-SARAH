@@ -51,12 +51,13 @@ public class Cow {
   
   void collide(ArrayList<Cow>others) {
     for (Cow w : others) {
-      if (this!=cow) {
-        if (Math.abs(dist(w.x,w.y,x,y)) < Math.max(radius, w.radius)) {
+      if (this!=w) {
+        if (dist(w.x,w.y,x,y) < radius + w.radius) {
           w.colliding = true;
           colliding = true;
         } else {
           colliding = false;
+          w.colliding = false;
         }
       }
     }
