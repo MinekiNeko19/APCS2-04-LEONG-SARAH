@@ -2,7 +2,7 @@ ArrayList<Cow> particles;
 void setup() {
   size(1000, 800);
   particles = new ArrayList<Cow>();
-  for (int i = 0; i < 100; i++)
+  for (int i = 0; i < 4; i++)
     particles.add(new Cow());
 }
 
@@ -10,8 +10,12 @@ void draw() {
   background(200);
   for (Cow c : particles) {
     c.move();
+  }
+  
+  for (Cow c : particles) {
     c.display();
   }
+  
   fill(0);
   textSize(20);
   text("FPS: "+frameRate+"\nCows: "+particles.size(),0,20);

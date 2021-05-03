@@ -9,6 +9,8 @@ public class Cow {
     this.y = y;
     this.dx = (int)(dx*100)/100.0;
     this.dy = (int)(dy*100)/100.0;
+    colliding = false;
+    selected = false;
     c = color(random(255),random(255),random(255));
 
   }
@@ -23,6 +25,7 @@ public class Cow {
     y += dy;
     if (x >= width - radius || x <= radius) dx *= -1;
     if (y >= height - radius || y <= radius) dy *= -1;
+    collide(particles);
   }
   
   void display() {
@@ -33,7 +36,14 @@ public class Cow {
     } else {
       fill(c);
     }
-    ellipse(x, y, radius*2, radius*2);    
+    
+    ellipse(x, y, radius*2, radius*2);
+    
+    fill(0);
+    if (selected) {
+      rect(x-radius/2, y-radius/4,radius/4,(radius/4));
+      rect(x+radius/2, y-radius/4,radius/4,(radius/4));
+    }
   }
 
   void click(){
@@ -57,7 +67,7 @@ public class Cow {
           colliding = true;
         } else {
           colliding = false;
-          w.colliding = false;
+          //w.colliding = false;
         }
       }
     }
