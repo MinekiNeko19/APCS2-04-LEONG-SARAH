@@ -43,6 +43,8 @@ public class Cow {
     if (selected) {
       rect(x-radius/2, y-radius/4,radius/4,(radius/4));
       rect(x+radius/2, y-radius/4,radius/4,(radius/4));
+      text("x: " + x, x + radius, y);
+      text("y: " + y, x + radius, y+20);
     }
   }
 
