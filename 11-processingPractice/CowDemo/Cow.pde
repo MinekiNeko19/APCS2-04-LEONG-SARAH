@@ -29,11 +29,23 @@ public class Cow {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
     
+    if (selected) {
+    }
+    
   }
 
   void click(){
    //if the mouseX and mouseY are touching this cow, change the cow somehow.
-   selected = true;
+   if (dist(mouseX,mouseY,x,y) < radius) {
+     println(dist(mouseX,mouseY,x,y) < radius);
+     if (selected) {
+         selected = false;
+         println("clicked false");
+       } else {
+         selected = true;
+         println("clicked true");
+       }
+   }
   }
   
   void collide(ArrayList<Cow>others) {

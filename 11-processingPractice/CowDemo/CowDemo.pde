@@ -32,9 +32,7 @@ void mousePressed() {
    }
    if (mouseButton==LEFT) {
      for (Cow c : particles) {
-       if (dist(mouseX,mouseY,c.x,c.y) < c.radius) {
-         c.dx++;
-       }
+       c.click();
      }
    }
 }
