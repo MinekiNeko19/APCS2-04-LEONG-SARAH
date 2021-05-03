@@ -1,6 +1,7 @@
 public class Cow {
   float x, y, dx, dy, radius;
   color c;
+  boolean colliding, selected;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -32,6 +33,10 @@ public class Cow {
 
   void click(){
    //if the mouseX and mouseY are touching this cow, change the cow somehow.
+   selected = true;
+  }
+  
+  void collide(ArrayList<Cow>others) {
     
   }
 

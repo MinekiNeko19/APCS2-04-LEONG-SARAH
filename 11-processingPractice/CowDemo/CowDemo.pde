@@ -22,11 +22,15 @@ void mousePressed() {
    //Right click: add a cow at the mouse location.
    //Left click: call the click of each cow
    //println(mouseButton);
-   if (mouseButton==39) { // right
-     Cow a = new Cow(10, mouseX,mouseY,10,10);
+   if (mouseButton==RIGHT) {
+     Cow a = new Cow(
+        20+(int)(Math.random()*30),
+        mouseX, mouseY, 
+        random(6)-3,
+        random(6)-3);
      particles.add(a);
    }
-   if (mouseButton==37) { // left
+   if (mouseButton==LEFT) {
      for (Cow c : particles) {
        if (dist(mouseX,mouseY,c.x,c.y) < c.radius) {
          c.dx++;
