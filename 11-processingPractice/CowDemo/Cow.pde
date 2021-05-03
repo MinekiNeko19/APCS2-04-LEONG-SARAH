@@ -24,32 +24,42 @@ public class Cow {
     if (x >= width - radius || x <= radius) dx *= -1;
     if (y >= height - radius || y <= radius) dy *= -1;
   }
+  
   void display() {
     stroke(0);
-    fill(c);
-    ellipse(x, y, radius*2, radius*2);
-    
-    if (selected) {
+    collide(particles);
+    if (colliding) {
+      fill(color(255,0,0));
+    } else {
+      fill(c);
     }
-    
+    ellipse(x, y, radius*2, radius*2);    
   }
 
   void click(){
    //if the mouseX and mouseY are touching this cow, change the cow somehow.
    if (dist(mouseX,mouseY,x,y) < radius) {
-     println(dist(mouseX,mouseY,x,y) < radius);
      if (selected) {
          selected = false;
-         println("clicked false");
+         //println("clicked false");
        } else {
          selected = true;
-         println("clicked true");
+         //println("clicked true");
        }
    }
   }
   
   void collide(ArrayList<Cow>others) {
-    
+    for (Cow w : others) {
+      if (this!=cow) {
+        if (Math.abs(dist(w.x,w.y,x,y)) < Math.max(radius, w.radius)) {
+          w.colliding = true;
+          colliding = true;
+        } else {
+          colliding = false;
+        }
+      }
+    }
   }
 
 }
