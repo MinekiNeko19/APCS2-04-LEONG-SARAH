@@ -2,6 +2,7 @@ public class Cow {
   float x, y, dx, dy, radius;
   color c;
   boolean colliding, selected;
+  boolean angry;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -12,6 +13,7 @@ public class Cow {
     colliding = false;
     selected = false;
     c = color(random(255),random(255),random(255));
+    if (Math.random() < 0.05) angry = true; else angry = false;
 
   }
   Cow() {
@@ -47,8 +49,11 @@ public class Cow {
     if (selected) {
       rect(x-radius/2, y-radius/4,radius/4,(radius/4));
       rect(x+radius/2, y-radius/4,radius/4,(radius/4));
-      text("x: " + x, x + radius, y);
-      text("y: " + y, x + radius, y+20);
+      
+      if (angry) rect(x-radius/2, y-radius/4,radius,2);
+      rect(x-radius/2, y+radius/4,radius,2);
+      text("dx: " + dx, x + radius, y);
+      text("dy: " + dy, x + radius, y+20);
     }
   }
 
