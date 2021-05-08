@@ -55,22 +55,18 @@ public class Cow {
       rect(x-radius/2, y+radius/4,radius,2);
       text("dx: " + dx, x + radius, y);
       text("dy: " + dy, x + radius, y+20);
+      
+      //line(x,y,x+30*dx,y+30*dy); // direction check
     }
   }
 
   void click(){
    //if the mouseX and mouseY are touching this cow, change the cow somehow.
    if (dist(mouseX,mouseY,x,y) < radius) {
-     if (selected) {
-         selected = false;
-         //println("clicked false");
-       } else {
-         selected = true;
-         //println("clicked true");
-       }
-      // shorter method: selected = !selected;
+     selected = !selected;
+     // testing
+     turn(30);
    }
-   
   }
   
   void collide(ArrayList<Cow>others) {
@@ -91,7 +87,11 @@ public class Cow {
    *Test this with any of the existing cow demos. (make the cows turn 30 degrees on click)
    */
   void turn(float angle){
-
+    float r = dist(dx,0,0,dy);
+    float original = atan2((float)-dy,(float)dx);
+    original += radians(angle);
+    dy = r*cos(original);
+    dx = r*sin(original);
   }
   /*Write a Cow method that will modify the dx and dy
    *such that the cow will add dv to the magnitude of its velocity 
