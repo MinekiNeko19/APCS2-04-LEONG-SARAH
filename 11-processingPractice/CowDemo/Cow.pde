@@ -88,9 +88,9 @@ public class Cow {
    */
   void turn(float angle){
     float r = dist(dx,0,0,dy);
-    float original = atan2((float)-dy,(float)dx);
+    float original = atan2((float)dy,(float)dx);
     original += radians(angle);
-    dy = r*cos(original);
+    dy = -r*cos(original);
     dx = r*sin(original);
   }
   /*Write a Cow method that will modify the dx and dy
