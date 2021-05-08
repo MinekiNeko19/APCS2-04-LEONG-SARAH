@@ -56,7 +56,9 @@ public class Cow {
       text("dx: " + dx, x + radius, y);
       text("dy: " + dy, x + radius, y+20);
       
-      //line(x,y,x+30*dx,y+30*dy); // direction check
+      text("dv: " + dist(0,0,dx,dy), x + radius, y+40); // velocity check
+      
+      line(x,y,x+30*dx,y+30*dy); // direction check
     }
   }
 
@@ -65,7 +67,8 @@ public class Cow {
    if (dist(mouseX,mouseY,x,y) < radius) {
      selected = !selected;
      // testing
-     turn(30);
+     //turn(30);
+     changeSpeed(2);
    }
   }
   
@@ -99,6 +102,14 @@ public class Cow {
    *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
    */
   void changeSpeed(float dv){
-
+    float a = atan(dv);
+    float vx = dv*cos(a);
+    float vy = dv*sin(a);
+    if (dx >= 0) dx += vx;
+    if (dx < 0) dx -= vx;
+    
+    if (dy >= 0) dy += vy;
+    if (dy < 0) dy -= vy;
+    
   }
 }
