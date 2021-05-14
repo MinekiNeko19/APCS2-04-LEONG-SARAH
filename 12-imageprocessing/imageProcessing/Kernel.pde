@@ -18,28 +18,26 @@ public class Kernel {
     color g = 0;
     color b = 0;
     
-    for (int i = -1; i < 1; i++) {
-      for (int j = -1; j < 1; j++) {
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
         r += kernel[i+1][j+1] * red(img.get(x+i,y+j));
       }
     }
     
     
-    for (int i = -1; i < 1; i++) {
-      for (int j = -1; j < 1; j++) {
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
         g += kernel[i+1][j+1] * green(img.get(x+i,y+j));
       }
     }
     
     
-    for (int i = -1; i < 1; i++) {
-      for (int j = -1; j < 1; j++) {
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
         b += kernel[i+1][j+1] * blue(img.get(x+i,y+j));
       }
     }
-    r /= 9;
-    g /= 9;
-    b /= 9;
+    //println("Red: " + r + " Green: " + g + " Blue: " + b);
     
     return color(r,g,b);
   }
