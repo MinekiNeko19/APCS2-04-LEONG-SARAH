@@ -1,8 +1,9 @@
 void setup(){
-  size(1450,500);
+  size(1450,495);
   PImage car = loadImage("redcar.jpg");
   PImage output = car.copy();
-  Kernel k = new Kernel( new float[][]    { {-1, -1, -1},
+  Kernel k = new Kernel(new float[][]
+   { {-1, -1, -1},
      {-1, 8, -1},
    {-1, -1, -1} } );
   k.apply(car,output);

@@ -1,7 +1,9 @@
 public class Kernel {
   float[][]kernel;
+  
   /*Constructor takes the kernel that will be applied to the image*/
   public Kernel(float[][]init) {
+    kernel = init;
   }
 
   /*If part of the kernel is off of the image, return black, Otherwise
@@ -10,6 +12,7 @@ public class Kernel {
   color calcNewColor(PImage img, int x, int y) {
     //Hint: start by always returning black.
     //This will let you test your apply method right away!
+    return color(0);
   }
 
 
@@ -17,6 +20,12 @@ public class Kernel {
 
   */
   void apply(PImage source, PImage destination) {
+    for (int x = 0; x < source.width; x++) {
+      for (int y = 0; y < source.height; y++) {
+        color c = calcNewColor(source,x,y);
+        destination.set(x,y,c);
+      }
+    }
   }
 
 }
