@@ -12,7 +12,36 @@ public class Kernel {
   color calcNewColor(PImage img, int x, int y) {
     //Hint: start by always returning black.
     //This will let you test your apply method right away!
-    return color(0);
+    if (x >= img.width-1 || x <= 0 ||
+      y >= img.height-1 || y <= 0) return color(0);
+    color r = 0;    
+    color g = 0;
+    color b = 0;
+    
+    for (int i = -1; i < 1; i++) {
+      for (int j = -1; j < 1; j++) {
+        r += kernel[i+1][j+1] * red(img.get(x+i,y+j));
+      }
+    }
+    
+    
+    for (int i = -1; i < 1; i++) {
+      for (int j = -1; j < 1; j++) {
+        g += kernel[i+1][j+1] * green(img.get(x+i,y+j));
+      }
+    }
+    
+    
+    for (int i = -1; i < 1; i++) {
+      for (int j = -1; j < 1; j++) {
+        b += kernel[i+1][j+1] * blue(img.get(x+i,y+j));
+      }
+    }
+    r /= 9;
+    g /= 9;
+    b /= 9;
+    
+    return color(r,g,b);
   }
 
 
